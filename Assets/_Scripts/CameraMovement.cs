@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraMovement : MonoBehaviour
 {
     float camRotX;
-    float camRotY;
+    public float camRotY;
 
     public float sensitivity = 1f;
 
@@ -27,7 +27,7 @@ public class CameraMovement : MonoBehaviour
         camRotX -= mouseMovement.x;
         camRotY += mouseMovement.y;
         camRotX = Mathf.Clamp(camRotX, -85, 85);
-        gameObject.transform.localRotation = Quaternion.Euler(-camRotX,camRotY, 0);
+        gameObject.transform.localRotation = Quaternion.Euler(-camRotX,0, 0);
 
         //gameObject.transform.Rotate(0, mouseMovement.y, 0);
     }

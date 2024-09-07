@@ -702,7 +702,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1496510018}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 3ee7ffefde9f6af4fab927ce320e5bfc, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -795,6 +795,7 @@ GameObject:
   - component: {fileID: 1632702294}
   - component: {fileID: 1632702293}
   - component: {fileID: 1632702292}
+  - component: {fileID: 1632702296}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -828,7 +829,7 @@ Rigidbody:
   serializedVersion: 4
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -852,7 +853,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1632702290}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 3ee7ffefde9f6af4fab927ce320e5bfc, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -918,6 +919,24 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1632702290}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1632702296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1632702290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b331c18cadc64564fb77925a50f87476, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isGrounded: 0
+  playerRB: {fileID: 1632702292}
+  maxSpeed: 10
+  acceleration: 20
+  jumpStrength: 10
+  cameraFollow: {fileID: 1384922422}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
