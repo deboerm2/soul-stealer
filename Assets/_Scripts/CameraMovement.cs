@@ -6,20 +6,10 @@ public class CameraMovement : MonoBehaviour
 {
     float camRotX;
     public float camRotY;
-
     public float sensitivity = 1f;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [Header("Virtual Camera settings")]
+    public float armDist;
 
     private void FixedUpdate()
     {
