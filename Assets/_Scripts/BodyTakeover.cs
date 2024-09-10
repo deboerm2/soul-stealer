@@ -8,6 +8,8 @@ public class BodyTakeover : MonoBehaviour
     private bool mainBody;
     public bool isPossesable = true;
 
+    public Transform followTarget;
+
     [Header("Movement stats")]
     public float maxSpeed;
     public float acceleration;

@@ -319,6 +319,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainBody: 0
   isPossesable: 1
+  followTarget: {fileID: 684404612}
   maxSpeed: 10
   acceleration: 20
   jumpStrength: 5
@@ -907,7 +908,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isGrounded: 0
-  takeoverRadius: 10
+  cineCam: {fileID: 1190123149}
   mainBody: {fileID: 1632702290}
   takeoverArea: {fileID: 0}
   currentBody: {fileID: 0}
@@ -1231,6 +1232,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainBody: 1
   isPossesable: 0
+  followTarget: {fileID: 1384922422}
   maxSpeed: 10
   acceleration: 20
   jumpStrength: 10
@@ -1269,6 +1271,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainBody: 0
   isPossesable: 1
+  followTarget: {fileID: 24322190}
   maxSpeed: 10
   acceleration: 20
   jumpStrength: 5

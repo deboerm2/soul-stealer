@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class PlayerController : MonoBehaviour
 {
@@ -21,8 +22,9 @@ public class PlayerController : MonoBehaviour
     private float jumpStrength;
     private HashSet<GameObject> bodiesInRange = new HashSet<GameObject>();
     private GameObject closestTakeOver;
+    private bool isPossessing = false;
 
-    public float takeoverRadius;
+    public CinemachineVirtualCamera cineCam;
     public GameObject mainBody;
     public SphereCollider takeoverArea;
     [SerializeField]
@@ -85,6 +87,28 @@ public class PlayerController : MonoBehaviour
         }
 
         #endregion
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (isPossessing)
+            {
+                BodySwap();
+                mainBody.GetComponent<Renderer>().enabled = true;
+                mainBody.GetComponent<Collider>().enabled = true;
+                isPossessing = false;
+            }
+            else
+            {
+                BodySwap(closestTakeOver);
+                mainBody.GetComponent<Renderer>().enabled = false;
+                mainBody.GetComponent<Collider>().enabled = false;
+                isPossessing = true;
+            }
+        }
+        if(isPossessing)
+        {
+            mainBody.transform.position = currentBody.transform.position;
+        }
+
     }
 
     private void FixedUpdate()
@@ -120,7 +144,9 @@ public class PlayerController : MonoBehaviour
         maxSpeed = bodyTakeover.maxSpeed;
         acceleration = bodyTakeover.acceleration;
         jumpStrength = bodyTakeover.jumpStrength;
+        cineCam.Follow = bodyTakeover.followTarget;
         currentBody = mainBody;
+        
     }
     void BodySwap(GameObject target)
     {
@@ -134,7 +160,9 @@ public class PlayerController : MonoBehaviour
         if (target.GetComponent<Collider>() == null)
             Debug.LogError("the target " + target.name + " does not have a Collider attached");
         else
+        {
             playerCollider = target.GetComponent<Collider>();
+        }
 
         bodyCamera = target.GetComponentInChildren<CameraMovement>();
         bodyCamera.enabled = true;
@@ -142,9 +170,12 @@ public class PlayerController : MonoBehaviour
         maxSpeed = bodyTakeover.maxSpeed;
         acceleration = bodyTakeover.acceleration;
         jumpStrength = bodyTakeover.jumpStrength;
+        cineCam.Follow = bodyTakeover.followTarget;
         currentBody = target;
+        
 
     }
+    
     public void AddBody(GameObject body)
     {
         bodiesInRange.Add(body);
