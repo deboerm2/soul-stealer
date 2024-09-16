@@ -20,15 +20,18 @@ public class PlayerController : MonoBehaviour
     private float maxSpeed;
     private float acceleration;
     private float jumpStrength;
+    private GameObject currentBodyModel;
     private HashSet<GameObject> bodiesInRange = new HashSet<GameObject>();
     private GameObject closestTakeOver;
     private bool isPossessing = false;
 
     public CinemachineVirtualCamera cineCam;
+    public GameObject orientation;
     public GameObject mainBody;
-    public SphereCollider takeoverArea;
+    public GameObject mainBodyModel;
     [SerializeField]
     private GameObject currentBody;
+    
 
     
 
@@ -41,12 +44,20 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        #region Movement Input
+        #region Movement Input & rotations
+        
         inputX = Input.GetAxis("Horizontal");
         inputY = Input.GetKeyDown(KeyCode.Space);
         inputZ = Input.GetAxis("Vertical");
-        movementDir = new Vector3(inputX, 0, inputZ);
         rotY = bodyCamera.camRotY;
+        orientation.transform.rotation = Quaternion.Euler(0, rotY, 0);
+        movementDir = inputX * orientation.transform.right + inputZ * orientation.transform.forward;
+
+        if (movementDir != Vector3.zero)
+        {
+            //need to define a rotation speed to rotate by
+            currentBodyModel.transform.forward = movementDir;
+        }
 
         isGrounded = Physics.Raycast(playerRB.ClosestPointOnBounds(playerCollider.bounds.center + (Vector3.down * playerCollider.bounds.extents.y))
             + (Vector3.up * 0.1f), Vector3.down, 0.3f);
@@ -92,14 +103,14 @@ public class PlayerController : MonoBehaviour
             if (isPossessing)
             {
                 BodySwap();
-                mainBody.GetComponent<Renderer>().enabled = true;
+                mainBodyModel.SetActive(true);
                 mainBody.GetComponent<Collider>().enabled = true;
                 isPossessing = false;
             }
             else
             {
                 BodySwap(closestTakeOver);
-                mainBody.GetComponent<Renderer>().enabled = false;
+                mainBodyModel.SetActive(false);
                 mainBody.GetComponent<Collider>().enabled = false;
                 isPossessing = true;
             }
@@ -114,17 +125,19 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         #region Movement
-        currentBody.transform.localRotation = Quaternion.Euler(0, rotY, 0);
+        //old -> currentBody.transform.localRotation = Quaternion.Euler(0, rotY, 0);
+
         //if player velocity is greater than max speed. slow down
         if (Mathf.Sqrt((playerRB.velocity.x * playerRB.velocity.x) + (playerRB.velocity.z * playerRB.velocity.z)) >= maxSpeed)
         {
             playerRB.AddForce(new Vector3(-playerRB.velocity.x * 6, 0, -playerRB.velocity.z * 6), ForceMode.Acceleration);
         }
+
         
         //if there is input, move
         if (movementDir != Vector3.zero)
         {
-            playerRB.AddRelativeForce(movementDir.normalized * acceleration, ForceMode.Acceleration);
+            playerRB.AddForce(movementDir.normalized * acceleration, ForceMode.Acceleration);
         }
         if (canJump)
         {
@@ -145,7 +158,9 @@ public class PlayerController : MonoBehaviour
         acceleration = bodyTakeover.acceleration;
         jumpStrength = bodyTakeover.jumpStrength;
         cineCam.Follow = bodyTakeover.followTarget;
+        currentBodyModel = bodyTakeover.bodyModel;
         currentBody = mainBody;
+        currentBody.transform.position += Vector3.up;
         
     }
     void BodySwap(GameObject target)
@@ -171,6 +186,7 @@ public class PlayerController : MonoBehaviour
         acceleration = bodyTakeover.acceleration;
         jumpStrength = bodyTakeover.jumpStrength;
         cineCam.Follow = bodyTakeover.followTarget;
+        currentBodyModel = bodyTakeover.bodyModel;
         currentBody = target;
         
 
