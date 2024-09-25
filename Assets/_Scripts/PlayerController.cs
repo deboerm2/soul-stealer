@@ -57,7 +57,10 @@ public class PlayerController : MonoBehaviour
         {
             //need to define a rotation speed to rotate by
             currentBodyModel.transform.forward = movementDir;
+            bodyTakeover.SetAnimatorParam("MovementInput", true);
         }
+        else
+            bodyTakeover.SetAnimatorParam("MovementInput", false);
 
         isGrounded = Physics.Raycast(playerRB.ClosestPointOnBounds(playerCollider.bounds.center + (Vector3.down * playerCollider.bounds.extents.y))
             + (Vector3.up * 0.1f), Vector3.down, 0.3f);
@@ -147,22 +150,26 @@ public class PlayerController : MonoBehaviour
         #endregion
 
     }
+    //swaps all necessary variables to the main player body
     void BodySwap()
     {
         playerRB = mainBody.GetComponent<Rigidbody>();
         playerCollider = mainBody.GetComponent<Collider>();
         bodyCamera = mainBody.GetComponentInChildren<CameraMovement>();
         bodyCamera.enabled = true;
+        bodyTakeover.isPossessed = false;
         bodyTakeover = mainBody.GetComponent<BodyTakeover>();
         maxSpeed = bodyTakeover.maxSpeed;
         acceleration = bodyTakeover.acceleration;
         jumpStrength = bodyTakeover.jumpStrength;
         cineCam.Follow = bodyTakeover.followTarget;
         currentBodyModel = bodyTakeover.bodyModel;
+        bodyTakeover.isPossessed = true;
         currentBody = mainBody;
         currentBody.transform.position += Vector3.up;
         
     }
+    //swaps all necessary variables to the target enemy body
     void BodySwap(GameObject target)
     {
         bodyCamera.enabled = false;
@@ -181,12 +188,14 @@ public class PlayerController : MonoBehaviour
 
         bodyCamera = target.GetComponentInChildren<CameraMovement>();
         bodyCamera.enabled = true;
+        bodyTakeover.isPossessed = false;
         bodyTakeover = target.GetComponent<BodyTakeover>();
         maxSpeed = bodyTakeover.maxSpeed;
         acceleration = bodyTakeover.acceleration;
         jumpStrength = bodyTakeover.jumpStrength;
         cineCam.Follow = bodyTakeover.followTarget;
         currentBodyModel = bodyTakeover.bodyModel;
+        bodyTakeover.isPossessed = true;
         currentBody = target;
         
 

@@ -190,7 +190,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!54 &44280870
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -320,8 +320,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainBody: 0
   isPossesable: 1
+  isPossessed: 0
   followTarget: {fileID: 684404612}
   bodyModel: {fileID: 1705685881}
+  bodyAnimator: {fileID: 0}
   maxSpeed: 10
   acceleration: 20
   jumpStrength: 5
@@ -598,6 +600,12 @@ GameObject:
 --- !u!4 &374891669 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 63fdb230e35611141b18195fb2be42ae,
+    type: 3}
+  m_PrefabInstance: {fileID: 896795711}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &374891670 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 63fdb230e35611141b18195fb2be42ae,
     type: 3}
   m_PrefabInstance: {fileID: 896795711}
   m_PrefabAsset: {fileID: 0}
@@ -1319,8 +1327,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainBody: 1
   isPossesable: 0
+  isPossessed: 0
   followTarget: {fileID: 1384922422}
   bodyModel: {fileID: 374891668}
+  bodyAnimator: {fileID: 374891670}
   maxSpeed: 10
   acceleration: 20
   jumpStrength: 10
@@ -1424,7 +1434,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1716856887
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1439,8 +1449,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainBody: 0
   isPossesable: 1
+  isPossessed: 0
   followTarget: {fileID: 24322190}
   bodyModel: {fileID: 971847101}
+  bodyAnimator: {fileID: 0}
   maxSpeed: 10
   acceleration: 20
   jumpStrength: 5
