@@ -14,7 +14,7 @@ public class BodyTakeover : MonoBehaviour
     public Transform followTarget;
     public GameObject bodyModel;
     [SerializeField]
-    public Animator bodyAnimator;
+    private Animator bodyAnimator;
 
     [Header("Movement stats")]
     public float maxSpeed;
@@ -29,8 +29,8 @@ public class BodyTakeover : MonoBehaviour
         if (bodyModel == null)
         {
             Debug.LogWarning(gameObject.name + " does not have an attached model in bodyModel and will not function properly");
-            //bodyAnimator = bodyModel.GetComponent<Animator>();
         }
+        bodyAnimator = gameObject.GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame

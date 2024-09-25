@@ -128,8 +128,6 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         #region Movement
-        //old -> currentBody.transform.localRotation = Quaternion.Euler(0, rotY, 0);
-
         //if player velocity is greater than max speed. slow down
         if (Mathf.Sqrt((playerRB.velocity.x * playerRB.velocity.x) + (playerRB.velocity.z * playerRB.velocity.z)) >= maxSpeed)
         {
@@ -157,7 +155,7 @@ public class PlayerController : MonoBehaviour
         playerCollider = mainBody.GetComponent<Collider>();
         bodyCamera = mainBody.GetComponentInChildren<CameraMovement>();
         bodyCamera.enabled = true;
-        bodyTakeover.isPossessed = false;
+        //bodyTakeover.isPossessed = false;
         bodyTakeover = mainBody.GetComponent<BodyTakeover>();
         maxSpeed = bodyTakeover.maxSpeed;
         acceleration = bodyTakeover.acceleration;
