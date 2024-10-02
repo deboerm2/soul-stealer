@@ -101,6 +101,7 @@ public class PlayerController : MonoBehaviour
         }
 
         #endregion
+        #region Possesion
         if (Input.GetKeyDown(KeyCode.E))
         {
             if (isPossessing)
@@ -122,7 +123,20 @@ public class PlayerController : MonoBehaviour
         {
             mainBody.transform.position = currentBody.transform.position;
         }
-
+        #endregion
+        #region Combat
+        //turn off bools in an animation event?
+        if(Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            bodyTakeover.SetAnimatorParam("Light", true);
+            bodyTakeover.SetAnimatorParam("inCombo", true);
+        }
+        if(Input.GetKeyDown(KeyCode.Mouse1))
+        {
+            bodyTakeover.SetAnimatorParam("Heavy", true);
+            bodyTakeover.SetAnimatorParam("inCombo", true);
+        }
+        #endregion
     }
 
     private void FixedUpdate()

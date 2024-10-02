@@ -10,6 +10,7 @@ public class BodyTakeover : MonoBehaviour
     public bool isPossesable = true;
     [HideInInspector]
     public bool isPossessed;
+    //^^used to turn off AI control
 
     public Transform followTarget;
     public GameObject bodyModel;
