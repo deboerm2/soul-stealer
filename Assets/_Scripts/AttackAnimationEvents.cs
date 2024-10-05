@@ -15,5 +15,11 @@ public class AttackAnimationEvents : MonoBehaviour
         bodyTakeover.SetAnimatorParam("Light", false);
         bodyTakeover.SetAnimatorParam("Heavy", false);
         bodyTakeover.SetAnimatorParam("inCombo", false);
+        print("TEST");
+    }
+
+    public void acceptAttackInput()
+    {
+        bodyTakeover.acceptAttackInputs = true;
     }
 }

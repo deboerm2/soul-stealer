@@ -12,10 +12,13 @@ public class BodyTakeover : MonoBehaviour
     public bool isPossessed;
     //^^used to turn off AI control
 
+    [Tooltip("A transform used by the cinemachine third-person camera to follow this object")]
     public Transform followTarget;
     public GameObject bodyModel;
     [SerializeField]
     private Animator bodyAnimator;
+    //[HideInInspector]
+    public bool acceptAttackInputs = true;
 
     [Header("Movement stats")]
     public float maxSpeed;
@@ -32,6 +35,7 @@ public class BodyTakeover : MonoBehaviour
             Debug.LogWarning(gameObject.name + " does not have an attached model in bodyModel and will not function properly");
         }
         bodyAnimator = gameObject.GetComponentInChildren<Animator>();
+        acceptAttackInputs = true;
     }
 
     // Update is called once per frame

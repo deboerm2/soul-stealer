@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     private HashSet<GameObject> bodiesInRange = new HashSet<GameObject>();
     private GameObject closestTakeOver;
     private bool isPossessing = false;
+    
 
     public CinemachineVirtualCamera cineCam;
     public GameObject orientation;
@@ -125,17 +126,22 @@ public class PlayerController : MonoBehaviour
         }
         #endregion
         #region Combat
-        //turn off bools in an animation event?
-        if(Input.GetKeyDown(KeyCode.Mouse0))
+        if (bodyTakeover.acceptAttackInputs)
         {
-            bodyTakeover.SetAnimatorParam("Light", true);
-            bodyTakeover.SetAnimatorParam("inCombo", true);
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+            {
+                bodyTakeover.SetAnimatorParam("Light", true);
+                bodyTakeover.SetAnimatorParam("inCombo", true);
+                bodyTakeover.acceptAttackInputs = false;
+            }
+            if (Input.GetKeyDown(KeyCode.Mouse1))
+            {
+                bodyTakeover.SetAnimatorParam("Heavy", true);
+                bodyTakeover.SetAnimatorParam("inCombo", true);
+                bodyTakeover.acceptAttackInputs = false;
+            }
         }
-        if(Input.GetKeyDown(KeyCode.Mouse1))
-        {
-            bodyTakeover.SetAnimatorParam("Heavy", true);
-            bodyTakeover.SetAnimatorParam("inCombo", true);
-        }
+        //still need input for special attack
         #endregion
     }
 
