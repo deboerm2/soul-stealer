@@ -15,10 +15,13 @@ public class AttackAnimationEvents : MonoBehaviour
         bodyTakeover.SetAnimatorParam("Light", false);
         bodyTakeover.SetAnimatorParam("Heavy", false);
         bodyTakeover.SetAnimatorParam("inCombo", false);
+        //turn on weapon colliders?
     }
 
     public void acceptAttackInput()
     {
         bodyTakeover.acceptAttackInputs = true;
+        //turn off weapon colliders
     }
+
 }

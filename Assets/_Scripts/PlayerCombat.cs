@@ -17,7 +17,8 @@ public class PlayerCombat : MonoBehaviour
         
     }
 
-    //us 0,1,2, etc. to differentiate between light or heavy attacks and general differing inputs.
+    //use 0,1,2, etc. to differentiate between light or heavy attacks and general differing inputs.
+    //I think was an initial idea for attack inputs
     public void PlayerAttack(int attackType, GameObject body)
     {
 

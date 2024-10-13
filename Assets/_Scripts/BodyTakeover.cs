@@ -44,6 +44,7 @@ public class BodyTakeover : MonoBehaviour
         
     }
 
+    //will be used to turn on/off ai control of the animator
     public void PlayerControlsAnimator(bool isPlayerControlled)
     {
         foreach(AnimatorControllerParameter parameter in bodyAnimator.parameters)
@@ -52,6 +53,7 @@ public class BodyTakeover : MonoBehaviour
         }
     }
 
+    //called to allow other scripts to change animator params without needing a reference to the animator in the other script
     public void SetAnimatorParam(string paramName, bool isTrue)
     {
         bodyAnimator.SetBool(paramName, isTrue);

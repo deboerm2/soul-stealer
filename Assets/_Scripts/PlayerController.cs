@@ -21,6 +21,9 @@ public class PlayerController : MonoBehaviour
     private float acceleration;
     private float jumpStrength;
     private GameObject currentBodyModel;
+    /// <summary>
+    /// used by BodyDetection to know what takeovers are in range
+    /// </summary>
     private HashSet<GameObject> bodiesInRange = new HashSet<GameObject>();
     private GameObject closestTakeOver;
     private bool isPossessing = false;
