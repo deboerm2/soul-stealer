@@ -20,6 +20,7 @@ public class BodyTakeover : MonoBehaviour
     //[HideInInspector]
     public bool acceptAttackInputs = true;
 
+
     [Header("Movement stats")]
     public float maxSpeed;
     public float acceleration;

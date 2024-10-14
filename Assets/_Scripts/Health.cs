@@ -30,6 +30,8 @@ public class Health : MonoBehaviour
     public virtual void Die()
     {
         //need to ensure player un-possesses a body here
+        FindObjectOfType<PlayerController>().RemoveBody(gameObject);
+        Death();
     }
 
     /// <summary>

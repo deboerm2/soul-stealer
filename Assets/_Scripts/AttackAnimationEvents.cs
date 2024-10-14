@@ -5,23 +5,25 @@ using UnityEngine;
 public class AttackAnimationEvents : MonoBehaviour
 {
     BodyTakeover bodyTakeover;
+    Weapon weapon;
 
     private void Start()
     {
         bodyTakeover = gameObject.GetComponentInParent<BodyTakeover>();
+        weapon = gameObject.GetComponentInChildren<Weapon>();
     }
     public void clearBools()
     {
         bodyTakeover.SetAnimatorParam("Light", false);
         bodyTakeover.SetAnimatorParam("Heavy", false);
         bodyTakeover.SetAnimatorParam("inCombo", false);
-        //turn on weapon colliders?
+        weapon.col.enabled = true;
     }
 
     public void acceptAttackInput()
     {
         bodyTakeover.acceptAttackInputs = true;
-        //turn off weapon colliders
+        weapon.col.enabled = false;
     }
 
 }
