@@ -162,8 +162,6 @@ public class PlayerController : MonoBehaviour
         if (new Vector3(playerRB.velocity.x, 0, playerRB.velocity.z).normalized != movementDir.normalized)
         {
             playerRB.AddForce((movementDir.normalized - new Vector3(playerRB.velocity.x, 0, playerRB.velocity.z).normalized) * acceleration, ForceMode.Acceleration);
-            print("ANGY");
-            print("vel: " + new Vector3(playerRB.velocity.x, 0, playerRB.velocity.z).normalized + " ----- moveDir: " + movementDir.normalized);
         }
 
         //if there is input, move
