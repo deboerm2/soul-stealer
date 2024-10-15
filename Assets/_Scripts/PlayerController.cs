@@ -156,8 +156,16 @@ public class PlayerController : MonoBehaviour
         {
             playerRB.AddForce(new Vector3(-playerRB.velocity.x * 6, 0, -playerRB.velocity.z * 6), ForceMode.Acceleration);
         }
-
         
+        //counter movement to reduce sliding
+        //if the player is not moveing in the direction they should, apply force to get there.
+        if (new Vector3(playerRB.velocity.x, 0, playerRB.velocity.z).normalized != movementDir.normalized)
+        {
+            playerRB.AddForce((movementDir.normalized - new Vector3(playerRB.velocity.x, 0, playerRB.velocity.z).normalized) * acceleration, ForceMode.Acceleration);
+            print("ANGY");
+            print("vel: " + new Vector3(playerRB.velocity.x, 0, playerRB.velocity.z).normalized + " ----- moveDir: " + movementDir.normalized);
+        }
+
         //if there is input, move
         if (movementDir != Vector3.zero)
         {
