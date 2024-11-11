@@ -190,10 +190,11 @@ public class PlayerController : MonoBehaviour
         acceleration = bodyTakeover.acceleration;
         jumpStrength = bodyTakeover.jumpStrength;
         cineCam.Follow = bodyTakeover.followTarget;
+        cineCam.GetCinemachineComponent<Cinemachine3rdPersonFollow>().CameraDistance = bodyCamera.armDist;
         currentBodyModel = bodyTakeover.bodyModel;
         bodyTakeover.isPossessed = true;
         currentBody = mainBody;
-        currentBody.transform.position += Vector3.up;
+        currentBody.transform.position += Vector3.up *3;
         
     }
     //swaps all necessary variables to the target enemy body
@@ -221,6 +222,7 @@ public class PlayerController : MonoBehaviour
         acceleration = bodyTakeover.acceleration;
         jumpStrength = bodyTakeover.jumpStrength;
         cineCam.Follow = bodyTakeover.followTarget;
+        cineCam.GetCinemachineComponent<Cinemachine3rdPersonFollow>().CameraDistance = bodyCamera.armDist;
         currentBodyModel = bodyTakeover.bodyModel;
         bodyTakeover.isPossessed = true;
         currentBody = target;
