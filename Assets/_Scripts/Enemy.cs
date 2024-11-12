@@ -53,7 +53,7 @@ public class Enemy : MonoBehaviour
     /// </summary>
     public virtual void Combat()
     {
-        if (Vector3.Distance(player.transform.position, gameObject.transform.position) < 2)
+        if (Vector3.Distance(player.transform.position, gameObject.transform.position) < 2 && bodyTakeover.acceptAttackInputs)
         {
             Attack();
         }
