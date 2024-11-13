@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class Enemy : MonoBehaviour
     private Rigidbody rb;
     private BodyTakeover bodyTakeover;
     private Animator animator;
+    private NavMeshAgent navAgent;
 
     private Vector3 moveDir;
 
@@ -19,6 +21,7 @@ public class Enemy : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody>();
         bodyTakeover = gameObject.GetComponent<BodyTakeover>();
         animator = GetComponentInChildren<Animator>();
+        navAgent = GetComponent<NavMeshAgent>();
     }
 
     // Update is called once per frame
@@ -45,7 +48,8 @@ public class Enemy : MonoBehaviour
     public virtual void Movement()
     {
         moveDir = player.transform.position - gameObject.transform.position;
-        rb.AddForce(new Vector3(moveDir.x, 0, moveDir.z).normalized * 5, ForceMode.Acceleration);
+        //rb.AddForce(new Vector3(moveDir.x, 0, moveDir.z).normalized * 5, ForceMode.Acceleration);
+        navAgent.SetDestination(player.transform.position);
         animator.gameObject.transform.forward = new Vector3(moveDir.x, 0, moveDir.z);
     }
     /// <summary>
