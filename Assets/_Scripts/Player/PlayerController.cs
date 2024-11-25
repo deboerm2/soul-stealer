@@ -42,6 +42,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        bodyTakeover = mainBody.GetComponent<BodyTakeover>();
         BodySwap();
     }
 
@@ -184,7 +185,7 @@ public class PlayerController : MonoBehaviour
         playerCollider = mainBody.GetComponent<Collider>();
         bodyCamera = mainBody.GetComponentInChildren<CameraMovement>();
         bodyCamera.enabled = true;
-        //bodyTakeover.isPossessed = false;
+        bodyTakeover.isPossessed = false;
         bodyTakeover = mainBody.GetComponent<BodyTakeover>();
         maxSpeed = bodyTakeover.maxSpeed;
         acceleration = bodyTakeover.acceleration;

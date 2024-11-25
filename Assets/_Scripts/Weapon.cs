@@ -11,24 +11,30 @@ public class Weapon : MonoBehaviour
     public float damage;
     [HideInInspector]
     public Collider col;
+    [HideInInspector]
+    public string currentTag;
+    private BodyTakeover bodyTakeover;
 
     // Start is called before the first frame update
     void Start()
     {
         col = gameObject.GetComponent<Collider>();
         col.enabled = false;
+        bodyTakeover = GetComponentInParent<BodyTakeover>();
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        currentTag = bodyTakeover.isPossessed ? "Player" : "Enemy";
     }
 
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<Health>() != null)
+        if (other.GetComponent<Health>() != null && !other.CompareTag(currentTag))
+        {
             other.GetComponent<Health>().TakeDamage(damage);
+        }
     }
 }

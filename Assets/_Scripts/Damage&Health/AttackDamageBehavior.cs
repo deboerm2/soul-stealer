@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// needs to be placed on attack animation blocks and manually given a damage value.
+/// </summary>
 public class AttackDamageBehavior : StateMachineBehaviour
 {
     public float damage;
