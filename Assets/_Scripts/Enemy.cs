@@ -27,26 +27,35 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        navAgent.enabled = !bodyTakeover.isPossessed;
+        //Debug.DrawRay(gameObject.transform.position, gameObject.transform.forward);
         if (bodyTakeover.isPossessed)
             return;
-
-        if (moveDir != Vector3.zero)
-            bodyTakeover.SetAnimatorParam("MovementInput", true);
         else
-            bodyTakeover.SetAnimatorParam("MovementInput", false);
+        {
+            if (moveDir != Vector3.zero)
+                bodyTakeover.SetAnimatorParam("MovementInput", true);
+            else
+                bodyTakeover.SetAnimatorParam("MovementInput", false);
 
-        Combat();
+            Combat();
+        }
+        
     }
 
     private void FixedUpdate()
     {
-        if (bodyTakeover.isPossessed)
-            return;
         Movement();
     }
 
     public virtual void Movement()
     {
+        if (bodyTakeover.isPossessed)
+        {
+            gameObject.transform.forward = Vector3.forward;
+            return;
+        }
+
         moveDir = player.transform.position - gameObject.transform.position;
         //rb.AddForce(new Vector3(moveDir.x, 0, moveDir.z).normalized * 5, ForceMode.Acceleration);
         navAgent.SetDestination(player.transform.position);

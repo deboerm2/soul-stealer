@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     private float maxSpeed;
     private float acceleration;
     private float jumpStrength;
+    [SerializeField]
     private GameObject currentBodyModel;
     /// <summary>
     /// used by BodyDetection to know what takeovers are in range
@@ -112,16 +113,10 @@ public class PlayerController : MonoBehaviour
             if (isPossessing)
             {
                 BodySwap();
-                mainBodyModel.SetActive(true);
-                mainBody.GetComponent<Collider>().enabled = true;
-                isPossessing = false;
             }
             else
             {
                 BodySwap(closestTakeOver);
-                mainBodyModel.SetActive(false);
-                mainBody.GetComponent<Collider>().enabled = false;
-                isPossessing = true;
             }
         }
         if(isPossessing)
@@ -179,7 +174,7 @@ public class PlayerController : MonoBehaviour
 
     }
     //swaps all necessary variables to the main player body
-    void BodySwap()
+    public void BodySwap()
     {
         playerRB = mainBody.GetComponent<Rigidbody>();
         playerCollider = mainBody.GetComponent<Collider>();
@@ -196,7 +191,11 @@ public class PlayerController : MonoBehaviour
         bodyTakeover.isPossessed = true;
         currentBody = mainBody;
         currentBody.transform.position += Vector3.up *3;
-        
+
+        mainBodyModel.SetActive(true);
+        mainBody.GetComponent<Collider>().enabled = true;
+        isPossessing = false;
+
     }
     //swaps all necessary variables to the target enemy body
     void BodySwap(GameObject target)
@@ -227,8 +226,10 @@ public class PlayerController : MonoBehaviour
         currentBodyModel = bodyTakeover.bodyModel;
         bodyTakeover.isPossessed = true;
         currentBody = target;
-        
 
+        mainBodyModel.SetActive(false);
+        mainBody.GetComponent<Collider>().enabled = false;
+        isPossessing = true;
     }
     
     public void AddBody(GameObject body)

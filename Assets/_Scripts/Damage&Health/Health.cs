@@ -6,11 +6,14 @@ public class Health : MonoBehaviour
 {
     public float maxHealth = 1;
     public float currentHealth;
+    public float energyOnDeath;
+    private bool isPossessed;
 
     // Start is called before the first frame update
     void Start()
     {
         currentHealth = maxHealth;
+        
     }
 
     // Update is called once per frame
@@ -31,6 +34,12 @@ public class Health : MonoBehaviour
     {
         //need to ensure player un-possesses a body here
         FindObjectOfType<PlayerController>().RemoveBody(gameObject);
+        if(gameObject.GetComponent<BodyTakeover>().isPossessed)
+        {
+            FindObjectOfType<PlayerController>().BodySwap();
+        }
+        else
+            FindObjectOfType<SoulEnergy>().AddEnergy(energyOnDeath);
         Death();
     }
 
