@@ -7,7 +7,10 @@ public class BodyTakeover : MonoBehaviour
 {
     [SerializeField]
     private bool mainBody;
-    public bool isPossesable = true;
+    public bool isPossesable;
+    [Tooltip("the amount of soul energy needed to possess this body")]
+    public float soulNeeded;
+    private SoulEnergy soulEnergy;
     [HideInInspector]
     public bool isPossessed;
     //^^used to turn off AI control
@@ -31,6 +34,7 @@ public class BodyTakeover : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        soulEnergy = FindObjectOfType<SoulEnergy>();
         if (bodyModel == null)
         {
             Debug.LogWarning(gameObject.name + " does not have an attached model in bodyModel and will not function properly");
@@ -42,16 +46,7 @@ public class BodyTakeover : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-    }
-
-    //will be used to turn on/off ai control of the animator
-    public void PlayerControlsAnimator(bool isPlayerControlled)
-    {
-        foreach(AnimatorControllerParameter parameter in bodyAnimator.parameters)
-        {
-            bodyAnimator.SetBool(parameter.name, false);
-        }
+        isPossesable = soulEnergy.currentEnergy >= soulNeeded ? true : false;
     }
 
     //called to allow other scripts to change animator params without needing a reference to the animator in the other script

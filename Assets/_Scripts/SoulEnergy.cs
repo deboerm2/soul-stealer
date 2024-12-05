@@ -8,7 +8,7 @@ public class SoulEnergy : MonoBehaviour
     //display
     private Slider slider;
 
-    private float currentEnergy = 0;
+    public float currentEnergy { get; private set; }
     private float maxEnergy = 100;
 
     // Start is called before the first frame update

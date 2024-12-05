@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
     private HashSet<GameObject> bodiesInRange = new HashSet<GameObject>();
     private GameObject closestTakeOver;
     private bool isPossessing = false;
+    private SoulEnergy soulEnergy;
     
 
     public CinemachineVirtualCamera cineCam;
@@ -44,6 +45,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         bodyTakeover = mainBody.GetComponent<BodyTakeover>();
+        soulEnergy = FindObjectOfType<SoulEnergy>();
         BodySwap();
     }
 
@@ -103,7 +105,8 @@ public class PlayerController : MonoBehaviour
                     }
                 }
             }
-            Debug.DrawLine(currentBody.transform.position, closestTakeOver.transform.position, Color.red);
+            if(closestTakeOver != null)
+                Debug.DrawLine(currentBody.transform.position, closestTakeOver.transform.position, Color.red);
         }
 
         #endregion
@@ -114,7 +117,7 @@ public class PlayerController : MonoBehaviour
             {
                 BodySwap();
             }
-            else
+            else if (closestTakeOver != null)
             {
                 BodySwap(closestTakeOver);
             }
@@ -226,6 +229,7 @@ public class PlayerController : MonoBehaviour
         currentBodyModel = bodyTakeover.bodyModel;
         bodyTakeover.isPossessed = true;
         currentBody = target;
+        soulEnergy.AddEnergy(-bodyTakeover.soulNeeded);
 
         mainBodyModel.SetActive(false);
         mainBody.GetComponent<Collider>().enabled = false;
