@@ -6,11 +6,11 @@ using UnityEngine.AI;
 public class Enemy : MonoBehaviour
 {
 
-    private GameObject player;
-    private Rigidbody rb;
-    private BodyTakeover bodyTakeover;
-    private Animator animator;
-    private NavMeshAgent navAgent;
+    protected GameObject player;
+    protected Rigidbody rb;
+    protected BodyTakeover bodyTakeover;
+    protected Animator animator;
+    protected NavMeshAgent navAgent;
 
     private Vector3 moveDir;
 
