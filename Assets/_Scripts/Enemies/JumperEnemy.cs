@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 
 public class JumperEnemy : Enemy
 {
     [Tooltip("Max distance of jump")]
     public float jumpDist;
-    [Tooltip("multiplier to determine the length of time to get to the end. 1 is base")]
+    [Tooltip("Speed of enemy during jump in units/second")]
     public float jumpSpeed; //need to make this based on actual speed like mph and not a lerp
     [Tooltip("determines the height of the jump's apex, multiplied by distance (ex. 0.5 will jump half as high as far")]
     public float jumpHeight;
@@ -64,10 +65,13 @@ public class JumperEnemy : Enemy
 
     public void MoveAlongCurve()
     {
-        transform.position = Bezier2(p1, p2, p3, jumpTime * jumpSpeed);
-        jumpTime += Time.deltaTime;
+        if (jumpTime < 1f)
+        {
+            rb.velocity = (Bezier2(p1, p2, p3, jumpTime * (jumpSpeed / Vector3.Distance(p1, p3))) - rb.position).normalized * jumpSpeed;
+            jumpTime += Time.deltaTime;
+        }
 
-        if(jumpTime >= 1 || Vector3.Distance(transform.position, p3) <= 0.3)
+        else
         {
             isJumping = false;
             navAgent.enabled = true;
@@ -80,13 +84,19 @@ public class JumperEnemy : Enemy
         p1 = transform.position;
         p3 = player.transform.position;
         p2 = (p1 + p3) / 2f;
-        p2.y = Vector3.Distance(p1, p3) * jumpHeight;
+        //height of apex, minimum of 0.5 units
+        p2.y = Mathf.Max(Vector3.Distance(p1, p3) * jumpHeight, Mathf.Max(p1.y, p3.y) + 1f);
     }
 
     //found at https://discussions.unity.com/t/moving-an-object-along-a-bezier-curve/1965/4
     public static Vector3 Bezier2(Vector3 Start, Vector3 Control, Vector3 End, float t)
     {
         return (((1 - t) * (1 - t)) * Start) + (2 * t * (1 - t) * Control) + ((t * t) * End);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        
     }
 
     IEnumerator JumpCooldown()

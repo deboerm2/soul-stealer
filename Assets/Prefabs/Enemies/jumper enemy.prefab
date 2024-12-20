@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2515787978770888874}
   - component: {fileID: 5046138451999553324}
   - component: {fileID: 5918882535837952456}
-  - component: {fileID: 8825255505465898347}
+  - component: {fileID: 8915931233270275977}
   - component: {fileID: 5606538047852572926}
   m_Layer: 0
   m_Name: jumper enemy
@@ -156,7 +156,7 @@ MonoBehaviour:
   soulNeeded: 0
   isPossessed: 0
   followTarget: {fileID: 4174167884818479440}
-  bodyModel: {fileID: 0}
+  bodyModel: {fileID: 2307229007516281255}
   bodyAnimator: {fileID: 0}
   acceptAttackInputs: 1
   maxSpeed: 10
@@ -177,7 +177,7 @@ MonoBehaviour:
   maxHealth: 1
   currentHealth: 0
   energyOnDeath: 0
---- !u!114 &8825255505465898347
+--- !u!114 &8915931233270275977
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -186,9 +186,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 2141224215523754229}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9a1402466f8d5946988ecd50337d2cf, type: 3}
+  m_Script: {fileID: 11500000, guid: 1517a7bf1a55c274ba32f2835b566201, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jumpDist: 10
+  jumpSpeed: 2
+  jumpHeight: 0.4
+  jumpCooldown: 1.5
 --- !u!195 &5606538047852572926
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -207,8 +211,8 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 0.5
-  m_BaseOffset: 0
+  m_Height: 1
+  m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!1 &2307229007516281255
@@ -222,6 +226,7 @@ GameObject:
   - component: {fileID: 1515431784946398939}
   - component: {fileID: 6951048927588592275}
   - component: {fileID: 5423342322358486150}
+  - component: {fileID: 8545332721127011349}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -294,6 +299,27 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!95 &8545332721127011349
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2307229007516281255}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d1f47d6e787195444a3d7830970ed64d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &8025759490701289622
 GameObject:
   m_ObjectHideFlags: 0
