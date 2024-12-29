@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour
     protected BodyTakeover bodyTakeover;
     protected Animator animator;
     protected NavMeshAgent navAgent;
+    protected Weapon weapon;
 
     private Vector3 moveDir;
 
@@ -22,6 +23,7 @@ public class Enemy : MonoBehaviour
         bodyTakeover = gameObject.GetComponent<BodyTakeover>();
         animator = GetComponentInChildren<Animator>();
         navAgent = GetComponent<NavMeshAgent>();
+        weapon = GetComponentInChildren<Weapon>();
     }
 
     // Update is called once per frame

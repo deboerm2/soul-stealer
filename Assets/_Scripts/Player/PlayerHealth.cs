@@ -13,7 +13,7 @@ public class PlayerHealth : Health
     // Update is called once per frame
     void Update()
     {
-        
+        print(currentHealth);
     }
 
     public override void Die()

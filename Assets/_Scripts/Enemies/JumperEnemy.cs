@@ -60,7 +60,8 @@ public class JumperEnemy : Enemy
         isJumping = true;
         SetPoints();
         jumpTime = 0;
-        //rb.AddForce((player.transform.position - transform.position).normalized * jumpStrength, ForceMode.Impulse);
+        weapon.col.enabled = true;
+        weapon.damage = 5;
     }
 
     public void MoveAlongCurve()
@@ -101,6 +102,7 @@ public class JumperEnemy : Enemy
 
     IEnumerator JumpCooldown()
     {
+        weapon.col.enabled = false;
         yield return new WaitForSeconds(jumpCooldown);
         bodyTakeover.acceptAttackInputs = true;
     }
