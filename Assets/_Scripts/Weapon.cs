@@ -7,7 +7,6 @@ public class Weapon : MonoBehaviour
     /// <summary>
     /// gets set by the AttackDamageBehavior script on the attack states in the animator
     /// </summary>
-    [HideInInspector]
     public float damage;
     [HideInInspector]
     public Collider col;

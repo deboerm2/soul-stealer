@@ -132,15 +132,11 @@ public class PlayerController : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
-                bodyTakeover.SetAnimatorParam("Light", true);
-                bodyTakeover.SetAnimatorParam("inCombo", true);
-                bodyTakeover.acceptAttackInputs = false;
+                bodyTakeover.BodyAttack();
             }
             if (Input.GetKeyDown(KeyCode.Mouse1))
             {
-                bodyTakeover.SetAnimatorParam("Heavy", true);
-                bodyTakeover.SetAnimatorParam("inCombo", true);
-                bodyTakeover.acceptAttackInputs = false;
+                bodyTakeover.AltAttack();
             }
         }
         //still need input for special attack

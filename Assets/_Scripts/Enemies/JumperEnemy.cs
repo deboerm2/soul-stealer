@@ -25,7 +25,13 @@ public class JumperEnemy : Enemy
     // Update is called once per frame
     void Update()
     {
+        if (bodyTakeover.isPossessed)
+            navAgent.enabled = false;
+        else 
+            navAgent.enabled = !isJumping;
+
         Combat();
+        
         if(isJumping)
         {
             MoveAlongCurve();
@@ -47,21 +53,30 @@ public class JumperEnemy : Enemy
 
     public override void Combat()
     {
-
-        if (Vector3.Distance(player.transform.position, gameObject.transform.position) < jumpDist && bodyTakeover.acceptAttackInputs)
+        if (!bodyTakeover.isPossessed)
         {
-            Attack();
+            if (Vector3.Distance(player.transform.position, gameObject.transform.position) < jumpDist && bodyTakeover.acceptAttackInputs)
+            {
+                Attack();
+            }
         }
     }
     public override void Attack()
     {
-        navAgent.enabled = false;
         bodyTakeover.acceptAttackInputs = false;
         isJumping = true;
-        SetPoints();
         jumpTime = 0;
         weapon.col.enabled = true;
-        weapon.damage = 5;
+        if(!bodyTakeover.isPossessed)
+        {
+            SetPoints();
+            weapon.damage = 5;
+        }
+        else
+        {
+            SetPoints(gameObject.transform.position + (animator.gameObject.transform.forward.normalized * 10));
+        }
+        
     }
 
     public void MoveAlongCurve()
@@ -75,7 +90,6 @@ public class JumperEnemy : Enemy
         else
         {
             isJumping = false;
-            navAgent.enabled = true;
             StartCoroutine(JumpCooldown());
         }
     }
@@ -84,6 +98,14 @@ public class JumperEnemy : Enemy
     {
         p1 = transform.position;
         p3 = player.transform.position;
+        p2 = (p1 + p3) / 2f;
+        //height of apex, minimum of 0.5 units
+        p2.y = Mathf.Max(Vector3.Distance(p1, p3) * jumpHeight, Mathf.Max(p1.y, p3.y) + 1f);
+    }
+    void SetPoints(Vector3 point3)
+    {
+        p1 = transform.position;
+        p3 = point3;
         p2 = (p1 + p3) / 2f;
         //height of apex, minimum of 0.5 units
         p2.y = Mathf.Max(Vector3.Distance(p1, p3) * jumpHeight, Mathf.Max(p1.y, p3.y) + 1f);
