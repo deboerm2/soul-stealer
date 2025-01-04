@@ -12,7 +12,7 @@ public class Weapon : MonoBehaviour
     public Collider col;
     [HideInInspector]
     public string currentTag;
-    private BodyTakeover bodyTakeover;
+    protected BodyTakeover bodyTakeover;
 
     // Start is called before the first frame update
     void Start()
