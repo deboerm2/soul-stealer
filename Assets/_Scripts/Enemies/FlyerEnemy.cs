@@ -31,6 +31,7 @@ public class FlyerEnemy : Enemy
         
     }
 
+    //remember this enemy shoots non-damaging projectiles
     public override void Attack()
     {
         
