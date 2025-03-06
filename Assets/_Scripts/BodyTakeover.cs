@@ -25,7 +25,7 @@ public class BodyTakeover : MonoBehaviour
     public bool acceptAttackInputs = true;
 
 
-    [Header("Movement stats")]
+    [Header("Possessed Movement stats")]
     public float maxSpeed;
     public float acceleration;
     public float jumpStrength;

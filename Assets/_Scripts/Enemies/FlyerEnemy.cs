@@ -4,6 +4,30 @@ using UnityEngine;
 
 public class FlyerEnemy : Enemy
 {
+    //what the player attacks. the "creaking heart"
+    public GameObject beacon;
+
+    [Header("Orbit")]
+    [SerializeField]
+    private Transform orbitPoint;
+    [SerializeField]
+    private float orbitRadius;
+    [SerializeField]
+    private float orbitSpeed;
+
+    [Header("Dive Bomb")]
+    [SerializeField]
+    private float diveSpeed;
+    [SerializeField]
+    private float startupDelay;
+    [SerializeField]
+    private float diveDamage;
+
+    public bool doOrbit = true;
+
+    private Vector3 storeRot = Vector3.zero;
+
+
 
     private void Start()
     {
@@ -17,25 +41,32 @@ public class FlyerEnemy : Enemy
     // Update is called once per frame
     void Update()
     {
-        
+        Combat();
     }
 
     public override void Movement()
     {
-        rb.velocity = (player.transform.position - transform.position).normalized * 2;
-        bodyTakeover.bodyModel.transform.forward = bodyTakeover.followTarget.forward;
-
+        if (doOrbit)
+        {
+            transform.rotation = Quaternion.Euler(storeRot);
+            transform.RotateAround(orbitPoint.position, transform.up, -orbitSpeed);
+            storeRot = transform.rotation.eulerAngles;
+        }
     }
 
     public override void Combat()
     {
-        
+        if(Vector3.Distance(player.transform.position, gameObject.transform.position) < 10)
+        {
+            doOrbit = false;
+            transform.LookAt(player.transform.position, transform.up);
+        }
     }
 
     //remember this enemy shoots non-damaging projectiles
     public override void Attack()
     {
-        
+
     }
 
     
