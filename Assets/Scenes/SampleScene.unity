@@ -1942,7 +1942,7 @@ PrefabInstance:
     - target: {fileID: 5358071954828981955, guid: 62416136ece26f743b9874d93cdbb7bc,
         type: 3}
       propertyPath: m_UseGravity
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5358071954828981955, guid: 62416136ece26f743b9874d93cdbb7bc,
         type: 3}
