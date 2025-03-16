@@ -4,8 +4,15 @@ using UnityEngine;
 
 public class FlyerEnemy : Enemy
 {
+    /// <summary>
+    /// number of attacks per second.
+    /// </summary>
+    public float attackSpeed = 1;
+
+    [Header("Prefabs")]
     //what the player attacks. the "creaking heart"
     public GameObject beacon;
+    public GameObject slowingProjectile;
 
     [Header("Orbit")]
     [SerializeField]
@@ -23,7 +30,8 @@ public class FlyerEnemy : Enemy
     [SerializeField]
     private float diveDamage;
 
-    public bool doOrbit = true;
+    private bool doOrbit = true;
+    private bool doAttack = true;
 
     private Vector3 storeRot = Vector3.zero;
 
@@ -56,17 +64,41 @@ public class FlyerEnemy : Enemy
 
     public override void Combat()
     {
-        if(Vector3.Distance(player.transform.position, gameObject.transform.position) < 10)
+        if (Vector3.Distance(player.transform.position, gameObject.transform.position) < 10)
         {
             doOrbit = false;
             transform.LookAt(player.transform.position, transform.up);
+            TryAttack();
+        }
+        else
+            doOrbit = true;
+    }
+
+    public void TryAttack()
+    {
+        if (!doAttack)
+            return;
+        else
+        {
+            Attack();
+            StartCoroutine(AttackCooldown());
         }
     }
 
     //remember this enemy shoots non-damaging projectiles
     public override void Attack()
     {
+        GameObject projectile = Instantiate(slowingProjectile);
+        projectile.GetComponent<Projectile>().projBodyTakeover = bodyTakeover;
+        projectile.transform.position = gameObject.transform.position;
+        projectile.transform.forward = gameObject.transform.forward;
+    }
 
+    private IEnumerator AttackCooldown()
+    {
+        doAttack = false;
+        yield return new WaitForSeconds(1 / attackSpeed);
+        doAttack = true;
     }
 
     

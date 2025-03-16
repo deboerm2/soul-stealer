@@ -6,6 +6,7 @@ public class Projectile : Weapon
 {
     [HideInInspector]
     public BodyTakeover projBodyTakeover;
+    public float speed = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +20,6 @@ public class Projectile : Weapon
     // Update is called once per frame
     void Update()
     {
-        //move foward
+        gameObject.transform.position += transform.forward.normalized * speed * Time.deltaTime;
     }
 }
