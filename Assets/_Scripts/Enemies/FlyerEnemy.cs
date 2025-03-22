@@ -49,12 +49,26 @@ public class FlyerEnemy : Enemy
     // Update is called once per frame
     void Update()
     {
-        Combat();
+        if (!bodyTakeover.isPossessed)
+        {
+            bodyTakeover.bodyModel.transform.rotation = gameObject.transform.rotation;
+            Combat();
+        }
+        else
+        {
+            gameObject.transform.forward = Vector3.forward;
+            bodyTakeover.bodyModel.transform.rotation = bodyTakeover.followTarget.transform.rotation;
+        }
     }
-
+    
+    //called in Enemy FixedUpdate()
     public override void Movement()
     {
-        if (doOrbit)
+        if (bodyTakeover.isPossessed)
+        {
+            return;
+        }
+        else if (doOrbit)
         {
             transform.rotation = Quaternion.Euler(storeRot);
             transform.RotateAround(orbitPoint.position, transform.up, -orbitSpeed);
@@ -90,8 +104,9 @@ public class FlyerEnemy : Enemy
     {
         GameObject projectile = Instantiate(slowingProjectile);
         projectile.GetComponent<Projectile>().projBodyTakeover = bodyTakeover;
+        projectile.GetComponent<Projectile>().currentTag = gameObject.tag;
         projectile.transform.position = gameObject.transform.position;
-        projectile.transform.forward = gameObject.transform.forward;
+        projectile.transform.forward = bodyTakeover.bodyModel.transform.forward;
     }
 
     private IEnumerator AttackCooldown()

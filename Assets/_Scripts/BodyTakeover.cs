@@ -24,6 +24,7 @@ public class BodyTakeover : MonoBehaviour
     //[HideInInspector]
     public bool acceptAttackInputs = true;
 
+    protected float currentTimeScale = 1f;
 
     [Header("Possessed Movement stats")]
     public float maxSpeed;
@@ -42,7 +43,7 @@ public class BodyTakeover : MonoBehaviour
         }
         bodyAnimator = gameObject.GetComponentInChildren<Animator>();
         acceptAttackInputs = true;
-        if(!mainBody)
+        if (!mainBody)
         {
             if (gameObject.GetComponent<Enemy>() == null)
                 Debug.LogWarning(gameObject.name + "is marked as mainBody");
@@ -57,9 +58,10 @@ public class BodyTakeover : MonoBehaviour
         isPossesable = soulEnergy.currentEnergy >= soulNeeded ? true : false;
     }
 
+    //used to allow for player to attack with possessed enemy
     public void BodyAttack()
     {
-        if(mainBody)
+        if (mainBody)
         {
             SetAnimatorParam("Light", true);
             SetAnimatorParam("inCombo", true);
@@ -84,12 +86,11 @@ public class BodyTakeover : MonoBehaviour
     //called to allow other scripts to change animator params without needing a reference to the animator in the other script
     public void SetAnimatorParam(string paramName, bool isTrue)
     {
-        foreach(AnimatorControllerParameter param in bodyAnimator.parameters)
+        foreach (AnimatorControllerParameter param in bodyAnimator.parameters)
         {
-            if(param.name == paramName)
+            if (param.name == paramName)
                 bodyAnimator.SetBool(paramName, isTrue);
         }
-           
-    }
 
+    }
 }

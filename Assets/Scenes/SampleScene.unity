@@ -350,7 +350,7 @@ GameObject:
   - component: {fileID: 253533021}
   m_Layer: 0
   m_Name: Terrain
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -507,7 +507,7 @@ GameObject:
   - component: {fileID: 312954242}
   m_Layer: 0
   m_Name: Cube (2)
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1934,10 +1934,20 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4063339843294020436, guid: 62416136ece26f743b9874d93cdbb7bc,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 4227247217119861815, guid: 62416136ece26f743b9874d93cdbb7bc,
         type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4282614865229779236, guid: 62416136ece26f743b9874d93cdbb7bc,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5358071954828981955, guid: 62416136ece26f743b9874d93cdbb7bc,
         type: 3}
@@ -1954,6 +1964,11 @@ PrefabInstance:
       propertyPath: m_IsKinematic
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6178655576093442772, guid: 62416136ece26f743b9874d93cdbb7bc,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 6284665236756271242, guid: 62416136ece26f743b9874d93cdbb7bc,
         type: 3}
       propertyPath: orbitPoint
@@ -1969,6 +1984,12 @@ PrefabInstance:
       propertyPath: orbitRadius
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6284665236756271242, guid: 62416136ece26f743b9874d93cdbb7bc,
+        type: 3}
+      propertyPath: slowingProjectile
+      value: 
+      objectReference: {fileID: 458182144346803141, guid: c3f10f7bf98af5d40a67a27b83b5db6b,
+        type: 3}
     - target: {fileID: 6842425984637540462, guid: 62416136ece26f743b9874d93cdbb7bc,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -1987,6 +2008,21 @@ PrefabInstance:
     - target: {fileID: 6842425984637540462, guid: 62416136ece26f743b9874d93cdbb7bc,
         type: 3}
       propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6842425984637540462, guid: 62416136ece26f743b9874d93cdbb7bc,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6842425984637540462, guid: 62416136ece26f743b9874d93cdbb7bc,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6842425984637540462, guid: 62416136ece26f743b9874d93cdbb7bc,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6842425984637540462, guid: 62416136ece26f743b9874d93cdbb7bc,
@@ -2231,7 +2267,6 @@ MonoBehaviour:
   mainBody: 1
   isPossesable: 0
   soulNeeded: 0
-  isPossessed: 0
   followTarget: {fileID: 1384922422}
   bodyModel: {fileID: 374891668}
   bodyAnimator: {fileID: 374891670}
@@ -2274,7 +2309,7 @@ GameObject:
   - component: {fileID: 1856730740}
   m_Layer: 0
   m_Name: Cube (1)
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

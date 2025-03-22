@@ -5,6 +5,7 @@ using Cinemachine;
 
 public class PlayerController : MonoBehaviour
 {
+
     private float inputX;
     private bool inputY;
     private float inputZ;
