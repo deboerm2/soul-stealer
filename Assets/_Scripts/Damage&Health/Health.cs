@@ -7,7 +7,6 @@ public class Health : MonoBehaviour
     public float maxHealth = 1;
     public float currentHealth;
     public float energyOnDeath;
-    private bool isPossessed;
 
     // Start is called before the first frame update
     void Start()
@@ -46,7 +45,7 @@ public class Health : MonoBehaviour
     /// <summary>
     /// called when the game object gets destroyed
     /// </summary>
-    void Death()
+    protected void Death()
     {
         Destroy(gameObject);
     }

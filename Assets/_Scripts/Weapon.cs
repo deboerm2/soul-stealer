@@ -23,7 +23,7 @@ public class Weapon : MonoBehaviour
     }
 
     // Update is called once per frame
-    virtual protected void Update()
+    void Update()
     {
         //used to determine what the weapon can hit
         currentTag = bodyTakeover.isPossessed ? "Player" : "Enemy";

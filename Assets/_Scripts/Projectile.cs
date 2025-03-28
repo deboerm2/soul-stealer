@@ -17,13 +17,17 @@ public class Projectile : Weapon
 
         //projBodyTakeover gets set when instatiated by enemy script
         bodyTakeover = projBodyTakeover;
+
+        //used to determine what the weapon can hit
+        currentTag = bodyTakeover.isPossessed ? "Player" : "Enemy";
+        bodyTakeover.tag = currentTag;
+
         StartCoroutine(ProjectileLifetime(lifetime));
     }
 
     // Update is called once per frame
-    protected override void Update()
+    void Update()
     {
-        base.Update();
         gameObject.transform.position += transform.forward.normalized * speed * Time.deltaTime;
     }
 

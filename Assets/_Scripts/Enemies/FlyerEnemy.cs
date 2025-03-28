@@ -44,6 +44,7 @@ public class FlyerEnemy : Enemy
         bodyTakeover = gameObject.GetComponent<BodyTakeover>();
         //animator is here so no warning/errors occur
         animator = GetComponentInChildren<Animator>();
+        gameObject.transform.position = orbitPoint.transform.position + (Vector3.right * orbitRadius);
     }
 
     // Update is called once per frame
