@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 
 public class JumperEnemy : Enemy
@@ -43,7 +42,11 @@ public class JumperEnemy : Enemy
         else if(!isJumping)
         {
             moveDir = player.transform.position - gameObject.transform.position;
-            rb.velocity = new Vector3(moveDir.x, 0, moveDir.z).normalized * 5;
+            rb.AddForce(new Vector3(moveDir.x, 0, moveDir.z).normalized * 0.5f, ForceMode.VelocityChange);
+            if (Mathf.Sqrt((rb.velocity.x * rb.velocity.x) + (rb.velocity.z * rb.velocity.z)) >= bodyTakeover.maxSpeed)
+            {
+                rb.AddForce(new Vector3(-rb.velocity.x * 6, 0, -rb.velocity.z * 6), ForceMode.Acceleration);
+            }
         }
     }
 
