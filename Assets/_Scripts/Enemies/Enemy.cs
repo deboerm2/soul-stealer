@@ -10,10 +10,9 @@ public class Enemy : MonoBehaviour
     protected Rigidbody rb;
     protected BodyTakeover bodyTakeover;
     protected Animator animator;
-    protected NavMeshAgent navAgent;
     protected Weapon weapon;
 
-    private Vector3 moveDir;
+    protected Vector3 moveDir;
 
     // Start is called before the first frame update
     void Start()
@@ -22,14 +21,12 @@ public class Enemy : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody>();
         bodyTakeover = gameObject.GetComponent<BodyTakeover>();
         animator = GetComponentInChildren<Animator>();
-        navAgent = GetComponent<NavMeshAgent>();
         weapon = GetComponentInChildren<Weapon>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        navAgent.enabled = !bodyTakeover.isPossessed;
         //Debug.DrawRay(gameObject.transform.position, gameObject.transform.forward);
         if (bodyTakeover.isPossessed)
             return;
@@ -59,8 +56,9 @@ public class Enemy : MonoBehaviour
         }
 
         moveDir = player.transform.position - gameObject.transform.position;
-        //rb.AddForce(new Vector3(moveDir.x, 0, moveDir.z).normalized * 5, ForceMode.Acceleration);
-        navAgent.SetDestination(player.transform.position);
+
+        rb.velocity = new Vector3(moveDir.x, 0, moveDir.z).normalized * 5;
+
         animator.gameObject.transform.forward = new Vector3(moveDir.x, 0, moveDir.z);
     }
     /// <summary>

@@ -25,11 +25,6 @@ public class JumperEnemy : Enemy
     // Update is called once per frame
     void Update()
     {
-        if (bodyTakeover.isPossessed)
-            navAgent.enabled = false;
-        else 
-            navAgent.enabled = !isJumping;
-
         Combat();
         
         if(isJumping)
@@ -45,9 +40,10 @@ public class JumperEnemy : Enemy
             gameObject.transform.forward = Vector3.forward;
             return;
         }
-        else if(!isJumping && navAgent.isOnNavMesh)
+        else if(!isJumping)
         {
-            navAgent.SetDestination(player.transform.position);
+            moveDir = player.transform.position - gameObject.transform.position;
+            rb.velocity = new Vector3(moveDir.x, 0, moveDir.z).normalized * 5;
         }
     }
 
