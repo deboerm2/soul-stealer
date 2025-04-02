@@ -1010,7 +1010,7 @@ PrefabInstance:
     - target: {fileID: 248728345700694699, guid: 601fb4526439e3843aed314751a52070,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 248728345700694699, guid: 601fb4526439e3843aed314751a52070,
         type: 3}
@@ -1020,7 +1020,7 @@ PrefabInstance:
     - target: {fileID: 1738778611492943812, guid: 601fb4526439e3843aed314751a52070,
         type: 3}
       propertyPath: maxSpeed
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1738778611492943812, guid: 601fb4526439e3843aed314751a52070,
         type: 3}
@@ -1353,7 +1353,7 @@ PrefabInstance:
     - target: {fileID: 2141224215523754229, guid: 7042c0bf1fb32c64798d083951b0925a,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7124354636045965886, guid: 7042c0bf1fb32c64798d083951b0925a,
         type: 3}

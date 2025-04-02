@@ -26,7 +26,7 @@ public class BodyTakeover : MonoBehaviour
 
     protected float currentTimeScale = 1f;
 
-    [Header("Possessed Movement stats")]
+    [Header("Movement stats")]
     public float maxSpeed;
     public float acceleration;
     public float jumpStrength;

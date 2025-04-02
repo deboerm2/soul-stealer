@@ -34,19 +34,9 @@ public class JumperEnemy : Enemy
 
     public override void Movement()
     {
-        if (bodyTakeover.isPossessed)
+        if(!isJumping)
         {
-            gameObject.transform.forward = Vector3.forward;
-            return;
-        }
-        else if(!isJumping)
-        {
-            moveDir = player.transform.position - gameObject.transform.position;
-            rb.AddForce(new Vector3(moveDir.x, 0, moveDir.z).normalized * 0.5f, ForceMode.VelocityChange);
-            if (Mathf.Sqrt((rb.velocity.x * rb.velocity.x) + (rb.velocity.z * rb.velocity.z)) >= bodyTakeover.maxSpeed)
-            {
-                rb.AddForce(new Vector3(-rb.velocity.x * 6, 0, -rb.velocity.z * 6), ForceMode.Acceleration);
-            }
+            base.Movement();
         }
     }
 
