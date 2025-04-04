@@ -24,7 +24,7 @@ public class BodyTakeover : MonoBehaviour
     //[HideInInspector]
     public bool acceptAttackInputs = true;
 
-    protected float currentTimeScale = 1f;
+    private float currentTimeScale = 1f;
 
     [Header("Movement stats")]
     public float maxSpeed;

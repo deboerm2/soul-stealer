@@ -157,7 +157,13 @@ public class PlayerController : MonoBehaviour
         //if the player is not moveing in the direction they should, apply force to get there.
         if (new Vector3(playerRB.velocity.x, 0, playerRB.velocity.z).normalized != movementDir.normalized)
         {
-            playerRB.AddForce((movementDir.normalized - new Vector3(playerRB.velocity.x, 0, playerRB.velocity.z).normalized) * acceleration * 2, ForceMode.Acceleration);
+            if (playerRB.velocity.magnitude < 2f && movementDir == Vector3.zero)
+            {
+                playerRB.velocity = Vector3.zero;
+            }
+            else
+                playerRB.AddForce((movementDir.normalized - new Vector3(playerRB.velocity.x, 0, playerRB.velocity.z).normalized), ForceMode.VelocityChange);
+            
         }
 
         //if there is input, move
