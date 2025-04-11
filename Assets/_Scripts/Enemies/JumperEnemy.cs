@@ -59,7 +59,6 @@ public class JumperEnemy : Enemy
         if(!bodyTakeover.isPossessed)
         {
             SetPoints();
-            weapon.damage = 5;
         }
         else
         {

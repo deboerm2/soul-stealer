@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class FlyerEnemy : Enemy
 {
+    [Tooltip("number of attacks per second")]
     /// <summary>
     /// number of attacks per second.
     /// </summary>
     public float attackSpeed = 1;
+    public float attackRange = 10;
 
     [Header("Prefabs")]
     //what the player attacks. the "creaking heart"
@@ -79,7 +81,7 @@ public class FlyerEnemy : Enemy
 
     public override void Combat()
     {
-        if (Vector3.Distance(player.transform.position, gameObject.transform.position) < 10)
+        if (Vector3.Distance(player.transform.position, gameObject.transform.position) < attackRange)
         {
             doOrbit = false;
             transform.LookAt(player.transform.position, transform.up);
