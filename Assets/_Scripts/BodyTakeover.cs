@@ -88,12 +88,11 @@ public class BodyTakeover : MonoBehaviour
     //called to allow other scripts to change animator params without needing a reference to the animator in the other script
     public void SetAnimatorParam(string paramName, bool isTrue)
     {
-        /*foreach (AnimatorControllerParameter param in bodyAnimator.parameters)
+        foreach (AnimatorControllerParameter param in bodyAnimator.parameters)
         {
             if (param.name == paramName)
                 bodyAnimator.SetBool(paramName, isTrue);
-        }*/
-        bodyAnimator.SetBool(paramName, isTrue);
+        }
 
     }
 
