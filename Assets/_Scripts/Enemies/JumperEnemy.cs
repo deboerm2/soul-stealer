@@ -72,7 +72,7 @@ public class JumperEnemy : Enemy
         if (jumpTime < 1f)
         {
             rb.velocity = (Bezier2(p1, p2, p3, jumpTime * (jumpSpeed / Vector3.Distance(p1, p3))) - rb.position).normalized * jumpSpeed;
-            jumpTime += Time.deltaTime;
+            jumpTime += Time.deltaTime * bodyTakeover.currentTimeScale;
         }
 
         else

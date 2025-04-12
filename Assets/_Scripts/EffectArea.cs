@@ -4,17 +4,13 @@ using UnityEngine;
 
 public class EffectArea : MonoBehaviour
 {
-    [System.Serializable]
-    public struct Effects
-    {
-        public bool slow;
-        public bool damage;
-    }
-
     public float lifetime;
     public Effects areaEffects;
 
-    private HashSet<GameObject> affectedObjects = new HashSet<GameObject>();
+    [HideInInspector]
+    public string unaffectedTag;
+
+    private HashSet<EffectHandler> affectedObjects = new HashSet<EffectHandler>();
 
     // Start is called before the first frame update
     void Start()
@@ -24,36 +20,35 @@ public class EffectArea : MonoBehaviour
             StartCoroutine(Lifespan(lifetime));
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    void ApplyEffects(GameObject gameobj)
-    {
-
-    }
-    void RemoveEffects(GameObject gameobj)
-    {
-
-    }
-
     private void OnTriggerEnter(Collider other)
     {
-        //affectedObjects.Add(other.gameObject);
+        if(other.gameObject.GetComponent<EffectHandler>() != null && other.tag != unaffectedTag)
+            affectedObjects.Add(other.gameObject.GetComponent<EffectHandler>());
+    }
+    private void OnTriggerStay(Collider other)
+    {
+        foreach(EffectHandler affected in affectedObjects)
+        {
+            affected.ActivateEffects(areaEffects);
+        }
     }
     private void OnTriggerExit(Collider other)
     {
-        //affectedObjects.Remove(other.gameObject);
+        EffectHandler otherHandler = other.gameObject.GetComponent<EffectHandler>();
+        if (otherHandler != null)
+            otherHandler.RemoveEffects();
+        affectedObjects.Remove(otherHandler);
     }
-
     IEnumerator Lifespan(float _lifespan)
     {
         yield return new WaitForSeconds(_lifespan);
-        foreach(GameObject obj in affectedObjects)
+        foreach(EffectHandler affected in affectedObjects)
         {
-            //clear effects
+            if (affected == null)
+                continue;
+
+            //affectedObjects.Remove(affected);
+            affected.RemoveEffects();
         }
         Destroy(gameObject);
     }

@@ -190,6 +190,7 @@ GameObject:
   - component: {fileID: 5046138451999553324}
   - component: {fileID: 5918882535837952456}
   - component: {fileID: 8915931233270275977}
+  - component: {fileID: -6970439155755892985}
   m_Layer: 0
   m_Name: jumper enemy
   m_TagString: Enemy
@@ -367,6 +368,21 @@ MonoBehaviour:
   jumpSpeed: 15
   jumpHeight: 0.4
   jumpCooldown: 1.5
+--- !u!114 &-6970439155755892985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2141224215523754229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c3eca2136f8c064c8b697b984048053, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeEffects:
+    slow: 0
+    damage: 0
 --- !u!1 &8025759490701289622
 GameObject:
   m_ObjectHideFlags: 0

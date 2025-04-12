@@ -15,7 +15,6 @@ public class AttackAnimationEvents : MonoBehaviour
     public void clearBools()
     {
         bodyTakeover.SetAnimatorParam("Light", false);
-        bodyTakeover.SetAnimatorParam("Heavy", false);
         bodyTakeover.SetAnimatorParam("inCombo", false);
         weapon.col.enabled = true;
     }

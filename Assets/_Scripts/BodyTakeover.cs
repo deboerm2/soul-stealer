@@ -24,7 +24,7 @@ public class BodyTakeover : MonoBehaviour
     //[HideInInspector]
     public bool acceptAttackInputs = true;
 
-    private float currentTimeScale = 1f;
+    public float currentTimeScale { get; private set; } = 1;
 
     [Header("Movement stats")]
     public float maxSpeed;
@@ -56,6 +56,8 @@ public class BodyTakeover : MonoBehaviour
     void Update()
     {
         isPossesable = soulEnergy.currentEnergy >= soulNeeded ? true : false;
+
+        bodyAnimator.SetFloat("SpeedMultiplier", currentTimeScale);
     }
 
     //used to allow for player to attack with possessed enemy
@@ -75,7 +77,7 @@ public class BodyTakeover : MonoBehaviour
     {
         if (mainBody)
         {
-            SetAnimatorParam("Heavy", true);
+            SetAnimatorParam("Special", true);
             SetAnimatorParam("inCombo", true);
             acceptAttackInputs = false;
         }
@@ -86,11 +88,21 @@ public class BodyTakeover : MonoBehaviour
     //called to allow other scripts to change animator params without needing a reference to the animator in the other script
     public void SetAnimatorParam(string paramName, bool isTrue)
     {
-        foreach (AnimatorControllerParameter param in bodyAnimator.parameters)
+        /*foreach (AnimatorControllerParameter param in bodyAnimator.parameters)
         {
             if (param.name == paramName)
                 bodyAnimator.SetBool(paramName, isTrue);
-        }
+        }*/
+        bodyAnimator.SetBool(paramName, isTrue);
 
+    }
+
+    public void SlowDown(float slowAmount)
+    {
+        currentTimeScale = slowAmount;
+    }
+    public void ReturnNormalSpeed()
+    {
+        currentTimeScale = 1;
     }
 }

@@ -163,7 +163,8 @@ public class PlayerController : MonoBehaviour
                 playerRB.velocity = Vector3.zero;
             }
             else
-                playerRB.AddForce((movementDir.normalized - new Vector3(playerRB.velocity.x, 0, playerRB.velocity.z).normalized), ForceMode.VelocityChange);
+                playerRB.AddForce((movementDir.normalized - new Vector3(playerRB.velocity.x, 0, playerRB.velocity.z).normalized),
+                    ForceMode.VelocityChange);
             
         }
 
@@ -177,6 +178,7 @@ public class PlayerController : MonoBehaviour
             playerRB.AddForce(Vector3.up * jumpStrength, ForceMode.Impulse);
             canJump = false;
         }
+        playerRB.velocity *= bodyTakeover.currentTimeScale;
         #endregion
 
     }

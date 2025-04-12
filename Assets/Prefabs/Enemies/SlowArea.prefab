@@ -122,3 +122,4 @@ MonoBehaviour:
   areaEffects:
     slow: 1
     damage: 0
+  unaffectedTag: 

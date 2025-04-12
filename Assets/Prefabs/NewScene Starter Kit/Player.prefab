@@ -79,6 +79,7 @@ GameObject:
   - component: {fileID: 8121563413851439833}
   - component: {fileID: 3858942934161614423}
   - component: {fileID: 8316565120661283092}
+  - component: {fileID: 5837100257963531340}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -94,7 +95,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4383481538598316112}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 4.12, z: -2.75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -192,6 +193,21 @@ MonoBehaviour:
   maxHealth: 1
   currentHealth: 0
   energyOnDeath: 0
+--- !u!114 &5837100257963531340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4383481538598316112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c3eca2136f8c064c8b697b984048053, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeEffects:
+    slow: 0
+    damage: 0
 --- !u!1 &5800544780759989944
 GameObject:
   m_ObjectHideFlags: 0
@@ -359,7 +375,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 099015b850d20144cab5126296276e1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
+  damage: 1
   col: {fileID: 0}
   currentTag: 
 --- !u!1001 &1978368128246640134

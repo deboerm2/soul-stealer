@@ -43,6 +43,7 @@ public class Projectile : Weapon
     {
         GameObject burstArea = Instantiate(slowArea);
         burstArea.transform.position = gameObject.transform.position;
+        burstArea.GetComponent<EffectArea>().unaffectedTag = currentTag;
 
         Destroy(gameObject);
     }

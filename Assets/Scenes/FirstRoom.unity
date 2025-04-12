@@ -136,6 +136,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: jumper enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 2141224215523754229, guid: 7042c0bf1fb32c64798d083951b0925a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5046138451999553324, guid: 7042c0bf1fb32c64798d083951b0925a,
         type: 3}
       propertyPath: maxSpeed
@@ -909,11 +914,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1168631180460251014, guid: c79116ffb888d3b4bb6c59bab3280071,
-        type: 3}
-      propertyPath: damage
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4383481538598316112, guid: c79116ffb888d3b4bb6c59bab3280071,
         type: 3}
       propertyPath: m_Name
@@ -1270,6 +1270,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: test target
+      objectReference: {fileID: 0}
+    - target: {fileID: 248728345700694699, guid: 601fb4526439e3843aed314751a52070,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1738778611492943812, guid: 601fb4526439e3843aed314751a52070,
         type: 3}
