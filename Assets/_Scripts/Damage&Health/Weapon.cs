@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    /// <summary>
-    /// gets set by the AttackDamageBehavior script on the attack states in the animator
-    /// </summary>
+    [Header("Attack Stats")]
     public float damage;
+    [Tooltip("Time in seconds the hitbox remains in scene")]
+    public float duration;
+    [Tooltip("Time in seconds before hitbox spawns, the 'windup'")]
+    public float startup;
+    [Tooltip("Time in seconds after hitbox despawns and before the player regains proper control")]
+    public float endlag;
+    [Header("Additional references")]
     [HideInInspector]
     public Collider col;
     [HideInInspector]
@@ -20,15 +25,14 @@ public class Weapon : MonoBehaviour
         col = gameObject.GetComponent<Collider>();
         col.enabled = false;
         bodyTakeover = GetComponentInParent<BodyTakeover>();
+
+        //used to determine what the weapon can hit
+        currentTag = bodyTakeover.tag;
+
+        StartCoroutine(AttackStartup());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        //used to determine what the weapon can hit
-        currentTag = bodyTakeover.isPossessed ? "Player" : "Enemy";
-        bodyTakeover.tag = currentTag;
-    }
+    
 
     private void OnTriggerEnter(Collider other)
     {
@@ -36,5 +40,25 @@ public class Weapon : MonoBehaviour
         {
             other.GetComponent<Health>().TakeDamage(damage);
         }
+    }
+    IEnumerator AttackStartup()
+    {
+        yield return new WaitForSeconds(startup);
+        StartCoroutine(AttackDuration());
+    }
+
+    IEnumerator AttackDuration()
+    {
+        col.enabled = true;
+        yield return new WaitForSeconds(duration);
+        col.enabled = false;
+        StartCoroutine(AttackEndlag());
+    }
+
+    IEnumerator AttackEndlag()
+    {
+        yield return new WaitForSeconds(endlag);
+        bodyTakeover.acceptAttackInputs = true;
+        //movement return to normal here
     }
 }

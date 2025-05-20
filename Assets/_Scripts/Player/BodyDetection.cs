@@ -15,14 +15,14 @@ public class BodyDetection : MonoBehaviour
     {
         if (other.gameObject.GetComponent<BodyTakeover>() != null)
         {
-            plControl.AddBody(other.gameObject);
+            plControl.AddBodyInRange(other.gameObject);
         }
     }
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.GetComponent<BodyTakeover>() != null)
         {
-            plControl.RemoveBody(other.gameObject);
+            plControl.RemoveBodyInRange(other.gameObject);
         }
     }
 }

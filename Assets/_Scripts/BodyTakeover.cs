@@ -26,10 +26,14 @@ public class BodyTakeover : MonoBehaviour
 
     public float currentTimeScale { get; private set; } = 1;
 
-    [Header("Movement stats")]
+    [Header("Body Movement stats")]
     public float maxSpeed;
     public float acceleration;
     public float jumpStrength;
+
+    [Header("Body Attacks")]
+    public GameObject attackGO;
+    public GameObject altAttackGO;
 
 
 
@@ -57,6 +61,8 @@ public class BodyTakeover : MonoBehaviour
     {
         isPossesable = soulEnergy.currentEnergy >= soulNeeded ? true : false;
 
+        this.tag = isPossessed ? "Player" : "Enemy";
+
         bodyAnimator.SetFloat("SpeedMultiplier", currentTimeScale);
     }
 
@@ -65,8 +71,7 @@ public class BodyTakeover : MonoBehaviour
     {
         if (mainBody)
         {
-            SetAnimatorParam("Light", true);
-            SetAnimatorParam("inCombo", true);
+            Instantiate(attackGO, bodyModel.transform);
             acceptAttackInputs = false;
         }
         else
@@ -77,8 +82,7 @@ public class BodyTakeover : MonoBehaviour
     {
         if (mainBody)
         {
-            SetAnimatorParam("Special", true);
-            SetAnimatorParam("inCombo", true);
+            Instantiate(altAttackGO, bodyModel.transform);
             acceptAttackInputs = false;
         }
         else

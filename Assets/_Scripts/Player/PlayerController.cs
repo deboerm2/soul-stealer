@@ -242,11 +242,13 @@ public class PlayerController : MonoBehaviour
         isPossessing = true;
     }
     
-    public void AddBody(GameObject body)
+    //adds a gameobject to the hashSet used by player to know which bodies are even in range to be considered possessable candidates
+    public void AddBodyInRange(GameObject body)
     {
         bodiesInRange.Add(body);
     }
-    public void RemoveBody(GameObject body)
+    //removes a gameobject from the hashSet used by player to know which bodies are even in range to be considered possessable candidates
+    public void RemoveBodyInRange(GameObject body)
     {
         bodiesInRange.Remove(body);
     }

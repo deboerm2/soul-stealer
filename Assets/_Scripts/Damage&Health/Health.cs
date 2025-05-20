@@ -27,12 +27,12 @@ public class Health : MonoBehaviour
         currentHealth -= amount;
     }
     /// <summary>
-    /// called to initiate death animations and other such things
+    /// called to first before Death() to initiate death animations and handle any cleanup and setup before destroying the gameobject.
     /// </summary>
     public virtual void Die()
     {
         //need to ensure player un-possesses a body here
-        FindObjectOfType<PlayerController>().RemoveBody(gameObject);
+        FindObjectOfType<PlayerController>().RemoveBodyInRange(gameObject);
         if(gameObject.GetComponent<BodyTakeover>().isPossessed)
         {
             FindObjectOfType<PlayerController>().BodySwap();
