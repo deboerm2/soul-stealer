@@ -63,6 +63,9 @@ public class PlayerController : MonoBehaviour
         orientation.transform.rotation = Quaternion.Euler(0, rotY, 0);
         movementDir = inputX * orientation.transform.right + inputZ * orientation.transform.forward;
 
+        if (bodyTakeover.restrictMovement)
+            movementDir = Vector3.zero;
+
         if (movementDir != Vector3.zero)
         {
             //need to define a rotation speed to rotate by
@@ -141,7 +144,6 @@ public class PlayerController : MonoBehaviour
                 bodyTakeover.AltAttack();
             }
         }
-        //still need input for special attack
         #endregion
     }
 

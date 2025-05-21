@@ -52,6 +52,7 @@ public class Weapon : MonoBehaviour
         col.enabled = true;
         yield return new WaitForSeconds(duration);
         col.enabled = false;
+        GetComponent<Renderer>().enabled = false;
         StartCoroutine(AttackEndlag());
     }
 
@@ -59,6 +60,7 @@ public class Weapon : MonoBehaviour
     {
         yield return new WaitForSeconds(endlag);
         bodyTakeover.acceptAttackInputs = true;
-        //movement return to normal here
+        bodyTakeover.restrictMovement = false;
+        Destroy(gameObject);
     }
 }

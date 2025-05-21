@@ -8,9 +8,9 @@ public class Enemy : MonoBehaviour
 
     protected GameObject player;
     protected Rigidbody rb;
+    private Collider col;
     protected BodyTakeover bodyTakeover;
     protected Animator animator;
-    protected Weapon weapon;
 
     protected Vector3 moveDir;
 
@@ -19,9 +19,9 @@ public class Enemy : MonoBehaviour
     {
         player = FindObjectOfType<PlayerHealth>().gameObject;
         rb = gameObject.GetComponent<Rigidbody>();
+        col = GetComponent<Collider>();
         bodyTakeover = gameObject.GetComponent<BodyTakeover>();
         animator = GetComponentInChildren<Animator>();
-        weapon = GetComponentInChildren<Weapon>();
     }
 
     // Update is called once per frame
@@ -56,6 +56,9 @@ public class Enemy : MonoBehaviour
         }
 
         moveDir = player.transform.position - gameObject.transform.position;
+        moveDir.y = 0;
+        if (bodyTakeover.restrictMovement)
+            moveDir = Vector3.zero;
 
         //going too fast, slow down
         if (Mathf.Sqrt((rb.velocity.x * rb.velocity.x) + (rb.velocity.z * rb.velocity.z)) >= bodyTakeover.maxSpeed)
@@ -92,8 +95,13 @@ public class Enemy : MonoBehaviour
     }
     public virtual void Attack()
     {
-        animator.SetBool("Light", true);
-        animator.SetBool("inCombo", true);
+        Instantiate(bodyTakeover.attackGO, bodyTakeover.bodyModel.transform);
         bodyTakeover.acceptAttackInputs = false;
+    }
+
+    public bool CheckGrounded()
+    {
+        return Physics.Raycast(rb.ClosestPointOnBounds(col.bounds.center + (Vector3.down * col.bounds.extents.y))
+           + (Vector3.up * 0.1f), Vector3.down, 0.3f);
     }
 }

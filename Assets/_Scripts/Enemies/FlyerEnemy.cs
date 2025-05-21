@@ -107,9 +107,10 @@ public class FlyerEnemy : Enemy
     {
         GameObject projectile = Instantiate(slowingProjectile);
         projectile.GetComponent<Projectile>().projBodyTakeover = bodyTakeover;
-        projectile.GetComponent<Projectile>().currentTag = gameObject.tag;
         projectile.transform.position = gameObject.transform.position;
         projectile.transform.forward = bodyTakeover.bodyModel.transform.forward;
+        //flyer doesn't really care about attacks restricting movement, handles it on its own
+        bodyTakeover.restrictMovement = false;
     }
 
     private IEnumerator AttackCooldown()

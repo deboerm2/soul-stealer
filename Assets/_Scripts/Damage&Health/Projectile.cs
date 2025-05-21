@@ -6,6 +6,8 @@ public class Projectile : Weapon
 {
     [HideInInspector]
     public BodyTakeover projBodyTakeover;
+    [Header("Projectile Stats")]
+    [Tooltip("speed of projectile")]
     public float speed = 1;
     public float lifetime = 5f;
     public GameObject slowArea;
@@ -19,8 +21,7 @@ public class Projectile : Weapon
         bodyTakeover = projBodyTakeover;
 
         //used to determine what the weapon can hit
-        currentTag = bodyTakeover.isPossessed ? "Player" : "Enemy";
-        bodyTakeover.tag = currentTag;
+        currentTag = bodyTakeover.tag;
 
         StartCoroutine(ProjectileLifetime(lifetime));
     }

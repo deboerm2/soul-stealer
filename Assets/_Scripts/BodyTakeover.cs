@@ -23,6 +23,7 @@ public class BodyTakeover : MonoBehaviour
     private Animator bodyAnimator;
     //[HideInInspector]
     public bool acceptAttackInputs = true;
+    public bool restrictMovement = false;
 
     public float currentTimeScale { get; private set; } = 1;
 
@@ -69,6 +70,8 @@ public class BodyTakeover : MonoBehaviour
     //used to allow for player to attack with possessed enemy
     public void BodyAttack()
     {
+        //most attacks turn this off when they are done
+        restrictMovement = true;
         if (mainBody)
         {
             Instantiate(attackGO, bodyModel.transform);
@@ -85,6 +88,7 @@ public class BodyTakeover : MonoBehaviour
             Instantiate(altAttackGO, bodyModel.transform);
             acceptAttackInputs = false;
         }
+        //will eventually be a secondary enemy attack only available when possessed.
         else
             enemyScript.Attack();
     }
