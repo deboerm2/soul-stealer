@@ -118,9 +118,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23fe13486b346f944a4c94031d5502c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 5
+  damage: 10
   duration: 0
   startup: 0
-  endlag: 0
+  endlag: 0.5
   col: {fileID: 0}
   currentTag: 

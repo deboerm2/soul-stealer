@@ -58,7 +58,9 @@ public class Enemy : MonoBehaviour
         moveDir = player.transform.position - gameObject.transform.position;
         moveDir.y = 0;
         if (bodyTakeover.restrictMovement)
+        {
             moveDir = Vector3.zero;
+        }
 
         //going too fast, slow down
         if (Mathf.Sqrt((rb.velocity.x * rb.velocity.x) + (rb.velocity.z * rb.velocity.z)) >= bodyTakeover.maxSpeed)
@@ -78,16 +80,16 @@ public class Enemy : MonoBehaviour
             rb.AddForce(moveDir.normalized * bodyTakeover.acceleration, ForceMode.Acceleration);
         }
 
-        //rb.velocity += Vector3.up * GRAVITY;
-
-        animator.gameObject.transform.forward = new Vector3(moveDir.x, 0, moveDir.z);
+        Vector3 faceForward = player.transform.position - gameObject.transform.position;
+        faceForward.y = 0;
+        animator.gameObject.transform.forward = faceForward;
     }
     /// <summary>
     /// logic for when the enemy will attack
     /// </summary>
     public virtual void Combat()
     {
-        if (Vector3.Distance(player.transform.position, gameObject.transform.position) < 2 && bodyTakeover.acceptAttackInputs)
+        if (Vector3.Distance(player.transform.position, gameObject.transform.position) < 1.7f && bodyTakeover.acceptAttackInputs)
         {
             Attack();
         }

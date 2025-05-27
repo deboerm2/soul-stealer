@@ -24,6 +24,7 @@ public class Weapon : MonoBehaviour
     {
         col = gameObject.GetComponent<Collider>();
         col.enabled = false;
+        GetComponent<Renderer>().enabled = false;
         bodyTakeover = GetComponentInParent<BodyTakeover>();
 
         //used to determine what the weapon can hit
@@ -43,6 +44,7 @@ public class Weapon : MonoBehaviour
     }
     IEnumerator AttackStartup()
     {
+        bodyTakeover.restrictMovement = true;
         yield return new WaitForSeconds(startup);
         StartCoroutine(AttackDuration());
     }
@@ -50,6 +52,7 @@ public class Weapon : MonoBehaviour
     IEnumerator AttackDuration()
     {
         col.enabled = true;
+        GetComponent<Renderer>().enabled = true;
         yield return new WaitForSeconds(duration);
         col.enabled = false;
         GetComponent<Renderer>().enabled = false;

@@ -70,8 +70,6 @@ public class BodyTakeover : MonoBehaviour
     //used to allow for player to attack with possessed enemy
     public void BodyAttack()
     {
-        //most attacks turn this off when they are done
-        restrictMovement = true;
         if (mainBody)
         {
             Instantiate(attackGO, bodyModel.transform);

@@ -264,6 +264,7 @@ MonoBehaviour:
   bodyModel: {fileID: 1410147136235972031}
   bodyAnimator: {fileID: 0}
   acceptAttackInputs: 1
+  restrictMovement: 0
   maxSpeed: 10
   acceleration: 20
   jumpStrength: 5
@@ -281,7 +282,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85572d50d41e8ac4d82e7abf98018f88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 1
+  maxHealth: 10
   currentHealth: 0
   energyOnDeath: 0
 --- !u!114 &8915931233270275977

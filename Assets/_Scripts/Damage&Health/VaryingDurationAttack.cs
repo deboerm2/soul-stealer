@@ -20,15 +20,23 @@ public class VaryingDurationAttack : Weapon
     public void TurnOn()
     {
         col.enabled = true;
+        bodyTakeover.restrictMovement = true;
         //any other effects needed for attack
     }
 
     public void TurnOff()
     {
         col.enabled = false;
-        bodyTakeover.restrictMovement = false;
+        GetComponent<Renderer>().material.color = Color.blue;
+        StartCoroutine(DoEndlag());
         //if any effects haven't turned off already do it here
 
+        
+    }
+    IEnumerator DoEndlag()
+    {
+        yield return new WaitForSeconds(endlag);
+        bodyTakeover.restrictMovement = false;
         Destroy(gameObject);
     }
 }
