@@ -155,7 +155,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainBody: 0
   isPossesable: 1
-  soulNeeded: 0
+  soulNeeded: 5
   isPossessed: 0
   followTarget: {fileID: 5616273187320028702}
   bodyModel: {fileID: 101238281395976366}
@@ -182,7 +182,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 10
   currentHealth: 0
-  energyOnDeath: 0
+  energyOnDeath: 3
 --- !u!114 &678403939174455466
 MonoBehaviour:
   m_ObjectHideFlags: 0

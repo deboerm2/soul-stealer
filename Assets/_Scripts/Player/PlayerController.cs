@@ -91,9 +91,9 @@ public class PlayerController : MonoBehaviour
         }
         #endregion
         #region Takeover detection
-        if(bodiesInRange.Count > 0)
+        if (bodiesInRange.Count > 0)
         {
-            foreach(GameObject body in bodiesInRange)
+            foreach (GameObject body in bodiesInRange)
             {
                 if (!body.GetComponent<BodyTakeover>().isPossesable)
                 {
@@ -103,16 +103,18 @@ public class PlayerController : MonoBehaviour
                     closestTakeOver = body;
                 else
                 {
-                    if ((closestTakeOver.transform.position - currentBody.transform.position).magnitude > 
+                    if ((closestTakeOver.transform.position - currentBody.transform.position).magnitude >
                         (body.transform.position - currentBody.transform.position).magnitude)
                     {
                         closestTakeOver = body;
                     }
                 }
             }
-            if(closestTakeOver != null)
+            if (closestTakeOver != null)
                 Debug.DrawLine(currentBody.transform.position, closestTakeOver.transform.position, Color.red);
         }
+        else
+            closestTakeOver = null;
 
         #endregion
         #region Possesion
@@ -121,6 +123,10 @@ public class PlayerController : MonoBehaviour
             if (isPossessing)
             {
                 BodySwap();
+                if (!closestTakeOver.GetComponent<BodyTakeover>().isPossesable)
+                {
+                    closestTakeOver = null;
+                }
             }
             else if (closestTakeOver != null)
             {

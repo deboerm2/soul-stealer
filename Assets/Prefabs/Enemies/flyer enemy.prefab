@@ -221,10 +221,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3e002858fecf1b44b951fbeaabea838a,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8831810193676936043}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3e002858fecf1b44b951fbeaabea838a,
-        type: 3}
-      insertIndex: -1
       addedObject: {fileID: 6284665236756271242}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3e002858fecf1b44b951fbeaabea838a,
         type: 3}
@@ -305,30 +301,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainBody: 0
   isPossesable: 0
-  soulNeeded: 0
+  soulNeeded: 5
   isPossessed: 0
   followTarget: {fileID: 2176098611724576893}
   bodyModel: {fileID: 6178655576093442772}
   bodyAnimator: {fileID: 1330465608370714494}
   acceptAttackInputs: 1
+  restrictMovement: 0
   maxSpeed: 1
   acceleration: 1
   jumpStrength: 1
---- !u!114 &8831810193676936043
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4063339843294020436}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85572d50d41e8ac4d82e7abf98018f88, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 1
-  currentHealth: 0
-  energyOnDeath: 0
+  attackGO: {fileID: 0}
+  altAttackGO: {fileID: 0}
 --- !u!114 &6284665236756271242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -367,6 +351,7 @@ MonoBehaviour:
   activeEffects:
     slow: 0
     damage: 0
+    cursed: 0
 --- !u!1001 &6449039575607443333
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -121,7 +121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 1
   currentHealth: 0
-  energyOnDeath: 0
+  energyOnDeath: 12
   flyer: {fileID: 1701056365850597665}
 --- !u!1 &8848826302727734734
 GameObject:
