@@ -5,12 +5,12 @@ using UnityEngine;
 public class AttackAnimationEvents : MonoBehaviour
 {
     BodyTakeover bodyTakeover;
-    Weapon weapon;
+    Attack weapon;
 
     private void Start()
     {
         bodyTakeover = gameObject.GetComponentInParent<BodyTakeover>();
-        weapon = gameObject.GetComponentInChildren<Weapon>();
+        weapon = gameObject.GetComponentInChildren<Attack>();
     }
     public void clearBools()
     {

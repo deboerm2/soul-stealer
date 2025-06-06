@@ -10,6 +10,7 @@ public class EffectHandler : MonoBehaviour
     //references needed to apply effects
     private BodyTakeover _bodyTakeover;
     private Health _health;
+    private float curseTimer;
 
     // Start is called before the first frame update
     void Start()
@@ -26,13 +27,20 @@ public class EffectHandler : MonoBehaviour
 
     public void ActivateEffects(Effects areaEffects)
     {
+        //if not already activated and areaEffect has a slow effect
         if(!activeEffects.slow && activeEffects.slow != areaEffects.slow)
         {
             activeEffects.slow = true;
         }
-        if(!activeEffects.damage && activeEffects.damage != areaEffects.damage)
+        //if not already activated and areaEffect has a damage effect
+        if (!activeEffects.damage && activeEffects.damage != areaEffects.damage)
         {
             activeEffects.damage = true;
+        }
+        //if not already activated and areaEffect has a damage effect
+        if (!activeEffects.cursed && activeEffects.cursed != areaEffects.cursed)
+        {
+            activeEffects.cursed = true;
         }
     }
 
@@ -46,11 +54,16 @@ public class EffectHandler : MonoBehaviour
         {
             //_health.TakeDamage(0);
         }
+        if(activeEffects.cursed)
+        {
+            print(gameObject.name + " IS CURSED");
+        }
     }
     public void RemoveEffects()
     {
         activeEffects.slow = false;
         _bodyTakeover.ReturnNormalSpeed();
         activeEffects.damage = false;
+        activeEffects.cursed = false;
     }
 }

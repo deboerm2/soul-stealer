@@ -7,7 +7,8 @@ public class EffectArea : MonoBehaviour
     public float lifetime;
     public Effects areaEffects;
 
-    [HideInInspector]
+    //[HideInInspector]
+    //currently used so enemies don't get slowed by enemies
     public string unaffectedTag;
 
     private HashSet<EffectHandler> affectedObjects = new HashSet<EffectHandler>();
@@ -22,7 +23,8 @@ public class EffectArea : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.GetComponent<EffectHandler>() != null && other.tag != unaffectedTag)
+        //has EffectHandler and is not tagged with unaffected tag
+        if(other.gameObject.GetComponent<EffectHandler>() != null && !other.CompareTag(unaffectedTag))
             affectedObjects.Add(other.gameObject.GetComponent<EffectHandler>());
     }
     private void OnTriggerStay(Collider other)
