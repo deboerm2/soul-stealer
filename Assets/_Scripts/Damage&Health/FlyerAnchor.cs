@@ -8,10 +8,10 @@ public class FlyerAnchor : Health
     public override void Die()
     {
         //need to ensure player un-possesses a body here
-        FindObjectOfType<PlayerController>().RemoveBodyInRange(flyer);
+        PlayerController.Instance.RemoveBodyInRange(flyer);
         if (flyer.GetComponent<BodyTakeover>().isPossessed)
         {
-            FindObjectOfType<PlayerController>().BodySwap();
+            PlayerController.Instance.BodySwap();
         }
         else
             FindObjectOfType<SoulEnergy>().AddEnergy(energyOnDeath);

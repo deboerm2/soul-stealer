@@ -19,19 +19,8 @@ public class AttackOnHitEffect : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if(other.GetComponent<Health>() != null && !other.CompareTag(attack.currentTag))
-        { 
-            GameObject effectObject = new GameObject();
-            effectObject.tag = attack.currentTag;
-
-            effectObject.AddComponent<SphereCollider>().isTrigger = true;
-            //effectObject.GetComponent<SphereCollider>().radius = 0.2f;
-
-            effectObject.AddComponent<EffectArea>().lifetime = duration;
-            effectObject.GetComponent<EffectArea>().areaEffects = onHitEffects;
-            effectObject.GetComponent<EffectArea>().unaffectedTag = attack.currentTag;
-
-            effectObject.transform.parent = other.transform;
-            effectObject.transform.localPosition = Vector3.zero;
+        {
+            other.GetComponent<EffectHandler>().ActivateOnHitEffects(onHitEffects, duration);
         }
     }
 }

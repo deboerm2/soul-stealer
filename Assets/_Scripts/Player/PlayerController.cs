@@ -5,6 +5,7 @@ using Cinemachine;
 
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController Instance { get; private set; }
 
     private float inputX;
     private bool inputY;
@@ -36,8 +37,7 @@ public class PlayerController : MonoBehaviour
     public GameObject orientation;
     public GameObject mainBody;
     public GameObject mainBodyModel;
-    [SerializeField]
-    private GameObject currentBody;
+    public GameObject currentBody { get; private set; }
     
 
     
@@ -45,6 +45,9 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (Instance == null)
+            Instance = this;
+
         Cursor.lockState = CursorLockMode.Locked;
         bodyTakeover = mainBody.GetComponent<BodyTakeover>();
         soulEnergy = FindObjectOfType<SoulEnergy>();

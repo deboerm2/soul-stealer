@@ -16,7 +16,7 @@ public class Health : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public virtual void Update()
     {
         if (currentHealth <= 0)
             Die();
@@ -32,10 +32,10 @@ public class Health : MonoBehaviour
     public virtual void Die()
     {
         //need to ensure player un-possesses a body here
-        FindObjectOfType<PlayerController>().RemoveBodyInRange(gameObject);
+        PlayerController.Instance.RemoveBodyInRange(gameObject);
         if(gameObject.GetComponent<BodyTakeover>().isPossessed)
         {
-            FindObjectOfType<PlayerController>().BodySwap();
+            PlayerController.Instance.BodySwap();
         }
         else
             FindObjectOfType<SoulEnergy>().AddEnergy(energyOnDeath);
