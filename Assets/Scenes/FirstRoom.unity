@@ -443,6 +443,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8705214484954794751, guid: 122de0f32174436408c0100e213c1aed,
         type: 3}
+      propertyPath: attackSpeed
+      value: 0.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 8705214484954794751, guid: 122de0f32174436408c0100e213c1aed,
+        type: 3}
       propertyPath: orbitRadius
       value: 4
       objectReference: {fileID: 0}

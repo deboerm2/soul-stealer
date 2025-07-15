@@ -119,7 +119,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 2.5
-  duration: 0.15
+  duration: 0.1
   startup: 0
   endlag: 0.05
   col: {fileID: 0}

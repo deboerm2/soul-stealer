@@ -121,6 +121,6 @@ MonoBehaviour:
   damage: 5
   duration: 0.2
   startup: 0.2
-  endlag: 0.1
+  endlag: 0.5
   col: {fileID: 0}
   currentTag: 

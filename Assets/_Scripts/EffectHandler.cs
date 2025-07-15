@@ -129,7 +129,6 @@ public class EffectHandler : MonoBehaviour
         if(activeEffects.cursed)
         {
             //soul on hit gain due to curse effect is handled in attack script.
-            print(gameObject.name + " is CURSED");
         }
     }
     public void RemoveEffects()

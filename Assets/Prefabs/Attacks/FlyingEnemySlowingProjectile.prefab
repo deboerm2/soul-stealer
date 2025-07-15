@@ -120,10 +120,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0
+  duration: 0
+  startup: 0
+  endlag: 0
   col: {fileID: 0}
   currentTag: 
   projBodyTakeover: {fileID: 0}
-  speed: 5
+  speed: 20
   lifetime: 5
   slowArea: {fileID: 8749514731166635889, guid: ed0660f79a7df6d41aeb77a036d62453,
     type: 3}
