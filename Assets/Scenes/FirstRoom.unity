@@ -150,7 +150,7 @@ PrefabInstance:
     - target: {fileID: 5046138451999553324, guid: 7042c0bf1fb32c64798d083951b0925a,
         type: 3}
       propertyPath: maxSpeed
-      value: 8
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 5046138451999553324, guid: 7042c0bf1fb32c64798d083951b0925a,
         type: 3}
@@ -224,6 +224,43 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 33955798}
   m_PrefabAsset: {fileID: 0}
+--- !u!20 &427172334 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 4167546680217104822, guid: e7415a873b820784f80855254fe187c0,
+    type: 3}
+  m_PrefabInstance: {fileID: 1138955084}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &932478032
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 932478033}
+  m_Layer: 0
+  m_Name: test
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &932478033
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 932478032}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 9.773465, y: 0.62476015, z: -16.531137}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1045117028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1535,6 +1572,11 @@ PrefabInstance:
       propertyPath: m_AdditionalShaderChannelsFlag
       value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 7363440753024123568, guid: 91f5fc52fdde4524db1afc1cce40537c,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 427172334}
     - target: {fileID: 7977492902674768778, guid: 91f5fc52fdde4524db1afc1cce40537c,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -1571,12 +1613,12 @@ PrefabInstance:
     - target: {fileID: 1738778611492943812, guid: 601fb4526439e3843aed314751a52070,
         type: 3}
       propertyPath: maxSpeed
-      value: 5
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1738778611492943812, guid: 601fb4526439e3843aed314751a52070,
         type: 3}
       propertyPath: acceleration
-      value: 10
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 4364012031371319201, guid: 601fb4526439e3843aed314751a52070,
         type: 3}
@@ -1643,3 +1685,4 @@ SceneRoots:
   - {fileID: 1738082677}
   - {fileID: 2131138166}
   - {fileID: 1785465498}
+  - {fileID: 932478033}

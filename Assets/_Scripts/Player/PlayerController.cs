@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
     public static PlayerController Instance { get; private set; }
 
-    private float inputX;
-    private bool inputY;
-    private float inputZ;
+    private InputAction inputXZ;
+    private InputAction inputY;
     private Vector3 movementDir;
     private float rotY;
     [SerializeField]
@@ -31,10 +31,9 @@ public class PlayerController : MonoBehaviour
     private GameObject closestTakeOver;
     private bool isPossessing = false;
     private SoulEnergy soulEnergy;
-    
 
+    public InputActionAsset plControls;
     public CinemachineVirtualCamera cineCam;
-    public GameObject orientation;
     public GameObject mainBody;
     public GameObject mainBodyModel;
     public GameObject currentBody { get; private set; }
@@ -59,12 +58,12 @@ public class PlayerController : MonoBehaviour
     {
         #region Movement Input & rotations
         
-        inputX = Input.GetAxis("Horizontal");
-        inputY = Input.GetKeyDown(KeyCode.Space);
-        inputZ = Input.GetAxis("Vertical");
+        inputXZ = plControls.FindAction("move");
+        inputY = plControls.FindAction("jump");
         rotY = bodyCamera.camRotY;
-        orientation.transform.rotation = Quaternion.Euler(0, rotY, 0);
-        movementDir = inputX * orientation.transform.right + inputZ * orientation.transform.forward;
+        movementDir.x = inputXZ.ReadValue<Vector2>().x;
+        movementDir.z = inputXZ.ReadValue<Vector2>().y;
+        movementDir = Quaternion.AngleAxis(rotY, Vector3.up) * movementDir;
 
         if (bodyTakeover.restrictMovement)
             movementDir = Vector3.zero;
@@ -83,7 +82,7 @@ public class PlayerController : MonoBehaviour
         Debug.DrawRay(playerRB.ClosestPointOnBounds(playerCollider.bounds.center + (Vector3.down * playerCollider.bounds.extents.y)), Vector3.down, Color.blue);
         if (isGrounded)
         {
-            if (inputY)
+            if (inputY.triggered)
             {
                 canJump = true;
             }
@@ -121,7 +120,7 @@ public class PlayerController : MonoBehaviour
 
         #endregion
         #region Possesion
-        if (Input.GetKeyDown(KeyCode.E))
+        if (plControls.FindAction("possession").triggered)
         {
             if (isPossessing)
             {
@@ -144,11 +143,11 @@ public class PlayerController : MonoBehaviour
         #region Combat
         if (bodyTakeover.acceptAttackInputs)
         {
-            if (Input.GetKeyDown(KeyCode.Mouse0))
+            if (plControls.FindAction("basicAttack").triggered)
             {
                 bodyTakeover.BodyAttack();
             }
-            if (Input.GetKeyDown(KeyCode.Mouse1))
+            if (plControls.FindAction("specialAttack").triggered)
             {
                 bodyTakeover.AltAttack();
             }
