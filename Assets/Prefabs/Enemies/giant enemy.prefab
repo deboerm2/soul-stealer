@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 814654605603502762}
   - component: {fileID: 352430008124434670}
   - component: {fileID: 6387528074660137956}
-  - component: {fileID: 6780807361406820843}
+  - component: {fileID: 7518316669855417948}
   - component: {fileID: 8573912051738393498}
   m_Layer: 0
   m_Name: giant enemy
@@ -32,7 +32,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 840858934657832300}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.21453655, y: -3.5567012, z: 1.5723629}
   m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_ConstrainProportionsScale: 1
@@ -165,8 +165,10 @@ MonoBehaviour:
   maxSpeed: 10
   acceleration: 20
   jumpStrength: 5
-  attackGO: {fileID: 0}
-  altAttackGO: {fileID: 0}
+  attackGO: {fileID: 3457268675304355909, guid: 63fa3967ab7ea744b8f08ffb3db41957,
+    type: 3}
+  altAttackGO: {fileID: 8419684465482555017, guid: 4c0309a62eddfbf49a7dbdf1d425b0c4,
+    type: 3}
 --- !u!114 &6387528074660137956
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,7 +184,7 @@ MonoBehaviour:
   maxHealth: 50
   currentHealth: 0
   energyOnDeath: 50
---- !u!114 &6780807361406820843
+--- !u!114 &7518316669855417948
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -191,7 +193,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 840858934657832300}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9a1402466f8d5946988ecd50337d2cf, type: 3}
+  m_Script: {fileID: 11500000, guid: b4746b60a44c42c4ca12efabbc81c6e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &8573912051738393498
@@ -210,132 +212,6 @@ MonoBehaviour:
     slow: 0
     damage: 0
     cursed: 0
---- !u!1 &4848616162245362534
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 808172086431272784}
-  - component: {fileID: 2282735467480503856}
-  - component: {fileID: 2159521156975460396}
-  - component: {fileID: 474402250332389729}
-  - component: {fileID: 1718599702153016421}
-  m_Layer: 0
-  m_Name: BEEGSTICK (1)
-  m_TagString: Enemy
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &808172086431272784
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4848616162245362534}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.21706678, y: 0.46867087, z: 0.546856, w: 0.65892196}
-  m_LocalPosition: {x: -0.39, y: 0.254, z: 0.126}
-  m_LocalScale: {x: 0.10000002, y: 0.44071996, z: 0.09999998}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6684524859989389499}
-  m_LocalEulerAnglesHint: {x: 20.932, y: 2.612, z: 83.425}
---- !u!33 &2282735467480503856
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4848616162245362534}
-  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &2159521156975460396
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4848616162245362534}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &474402250332389729
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4848616162245362534}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1
-  m_Height: 2.5
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
---- !u!114 &1718599702153016421
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4848616162245362534}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 099015b850d20144cab5126296276e1c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 1
-  duration: 0
-  startup: 0
-  endlag: 0
-  col: {fileID: 474402250332389729}
-  currentTag: 
 --- !u!1 &7737030816994021040
 GameObject:
   m_ObjectHideFlags: 0
@@ -2233,11 +2109,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 1378704946375708002, guid: c2eb0fee1c6764f4da5381b9006e854a,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 808172086431272784}
+    m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8053910662515362721, guid: c2eb0fee1c6764f4da5381b9006e854a,
         type: 3}
@@ -2268,9 +2140,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46ad94862a0825743aec8da22cf03138, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &6684524859989389499 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1378704946375708002, guid: c2eb0fee1c6764f4da5381b9006e854a,
-    type: 3}
-  m_PrefabInstance: {fileID: 5757314641606950361}
-  m_PrefabAsset: {fileID: 0}

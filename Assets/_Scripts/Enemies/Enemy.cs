@@ -119,6 +119,10 @@ public class Enemy : MonoBehaviour
         {
             rb.AddForce(moveDir.normalized * bodyTakeover.acceleration, ForceMode.Acceleration);
         }
+        if (bodyTakeover.restrictMovement)
+        {
+            return;
+        }
 
         Vector3 faceForward = player.transform.position - gameObject.transform.position;
         faceForward.y = 0;

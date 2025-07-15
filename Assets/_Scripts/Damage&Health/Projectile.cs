@@ -10,7 +10,7 @@ public class Projectile : Attack
     [Tooltip("speed of projectile")]
     public float speed = 1;
     public float lifetime = 5f;
-    public GameObject slowArea;
+    public GameObject burstArea;
 
     // Start is called before the first frame update
     void Start()
@@ -42,11 +42,11 @@ public class Projectile : Attack
 
     private void Burst()
     {
-        GameObject burstArea = Instantiate(slowArea);
-        burstArea.transform.position = gameObject.transform.position;
-        burstArea.GetComponent<EffectArea>().unaffectedTag = currentTag;
+        GameObject _burstArea = Instantiate(burstArea);
+        _burstArea.transform.position = gameObject.transform.position;
+        _burstArea.GetComponent<EffectArea>().unaffectedTag = currentTag;
 
-        Destroy(gameObject);
+        Destroy(gameObject);    
     }
 
     IEnumerator ProjectileLifetime(float _lifetime)
