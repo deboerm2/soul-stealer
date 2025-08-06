@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour
     private SoulEnergy soulEnergy;
 
     public InputActionAsset plControls;
-    public CinemachineVirtualCamera cineCam;
+    //public CinemachineVirtualCamera cineCam;
     public GameObject mainBody;
     public GameObject mainBodyModel;
     public GameObject currentBody { get; private set; }
@@ -198,14 +198,17 @@ public class PlayerController : MonoBehaviour
         playerRB = mainBody.GetComponent<Rigidbody>();
         playerCollider = mainBody.GetComponent<Collider>();
         bodyCamera = mainBody.GetComponentInChildren<CameraMovement>();
+        bodyTakeover.cineCam.enabled = false;
         bodyCamera.enabled = true;
         bodyTakeover.isPossessed = false;
         bodyTakeover = mainBody.GetComponent<BodyTakeover>();
         maxSpeed = bodyTakeover.maxSpeed;
         acceleration = bodyTakeover.acceleration;
         jumpStrength = bodyTakeover.jumpStrength;
-        cineCam.Follow = bodyTakeover.followTarget;
-        cineCam.GetCinemachineComponent<Cinemachine3rdPersonFollow>().CameraDistance = bodyCamera.armDist;
+        //cineCam.Follow = bodyTakeover.followTarget;
+        //cineCam.GetCinemachineComponent<Cinemachine3rdPersonFollow>().CameraDistance = bodyCamera.armDist;
+        bodyTakeover.cineCam.enabled = true;
+        
         currentBodyModel = bodyTakeover.bodyModel;
         bodyTakeover.isPossessed = true;
         currentBody = mainBody;
@@ -240,8 +243,10 @@ public class PlayerController : MonoBehaviour
         maxSpeed = bodyTakeover.maxSpeed;
         acceleration = bodyTakeover.acceleration;
         jumpStrength = bodyTakeover.jumpStrength;
-        cineCam.Follow = bodyTakeover.followTarget;
-        cineCam.GetCinemachineComponent<Cinemachine3rdPersonFollow>().CameraDistance = bodyCamera.armDist;
+        //target cineCam will have higher priority over player mainBody cineCam
+        bodyTakeover.cineCam.enabled = true;
+        //cineCam.Follow = bodyTakeover.followTarget;
+        //cineCam.GetCinemachineComponent<Cinemachine3rdPersonFollow>().CameraDistance = bodyCamera.armDist;
         currentBodyModel = bodyTakeover.bodyModel;
         bodyTakeover.isPossessed = true;
         currentBody = target;

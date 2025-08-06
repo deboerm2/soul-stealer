@@ -16,6 +16,8 @@ public class CombatEncounter : AreaEncounter
         rend = gameObject.GetComponent<Renderer>();
         if (enemiesParent == null)
             Debug.LogError("enemiesParent not set for " + gameObject.name);
+
+        enemiesParent.SetActive(false);
     }
 
     // Update is called once per frame
@@ -32,5 +34,14 @@ public class CombatEncounter : AreaEncounter
     public override void AreaComplete()
     {
         rend.material.SetColor("_CurrentColor", Color.green);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            LockDoors();
+            enemiesParent.SetActive(true);
+        }
     }
 }

@@ -6,13 +6,11 @@ using UnityEngine.InputSystem;
 public class CameraMovement : MonoBehaviour
 {
     float camRotX;
+    [HideInInspector]
     public float camRotY;
     public float sensitivity = 1f;
 
     PlayerInput plControls;
-
-    [Header("Virtual Camera settings")]
-    public float armDist;
 
     private void Start()
     {

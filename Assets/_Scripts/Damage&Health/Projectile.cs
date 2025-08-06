@@ -34,7 +34,7 @@ public class Projectile : Attack
 
     private void OnTriggerEnter(Collider other)
     {
-        if ((other.GetComponent<Health>() != null && !other.CompareTag(currentTag)) || other.CompareTag("Environment"))
+        if ((other.GetComponent<Health>() != null && !other.CompareTag(currentTag)) || other.CompareTag("Environment") && !other.isTrigger)
         {
             Burst();
         }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations;
+using Cinemachine;
 
 public class BodyTakeover : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class BodyTakeover : MonoBehaviour
 
     [Tooltip("A transform used by the cinemachine third-person camera to follow this object")]
     public Transform followTarget;
+    public CinemachineVirtualCamera cineCam;
     public GameObject bodyModel;
     [SerializeField]
     private Animator bodyAnimator;
