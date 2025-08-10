@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         bodyTakeover = mainBody.GetComponent<BodyTakeover>();
         soulEnergy = FindObjectOfType<SoulEnergy>();
-        BodySwap();
+        Startup();
     }
 
     // Update is called once per frame
@@ -201,12 +201,11 @@ public class PlayerController : MonoBehaviour
         bodyTakeover.cineCam.enabled = false;
         bodyCamera.enabled = true;
         bodyTakeover.isPossessed = false;
+        bodyTakeover.GetComponent<Health>().Die();
         bodyTakeover = mainBody.GetComponent<BodyTakeover>();
         maxSpeed = bodyTakeover.maxSpeed;
         acceleration = bodyTakeover.acceleration;
         jumpStrength = bodyTakeover.jumpStrength;
-        //cineCam.Follow = bodyTakeover.followTarget;
-        //cineCam.GetCinemachineComponent<Cinemachine3rdPersonFollow>().CameraDistance = bodyCamera.armDist;
         bodyTakeover.cineCam.enabled = true;
         
         currentBodyModel = bodyTakeover.bodyModel;
@@ -267,4 +266,26 @@ public class PlayerController : MonoBehaviour
     {
         bodiesInRange.Remove(body);
     }
+
+    void Startup()
+    {
+        playerRB = mainBody.GetComponent<Rigidbody>();
+        playerCollider = mainBody.GetComponent<Collider>();
+        bodyCamera = mainBody.GetComponentInChildren<CameraMovement>();
+        bodyCamera.enabled = true;
+
+        bodyTakeover = mainBody.GetComponent<BodyTakeover>();
+        maxSpeed = bodyTakeover.maxSpeed;
+        acceleration = bodyTakeover.acceleration;
+        jumpStrength = bodyTakeover.jumpStrength;
+        bodyTakeover.cineCam.enabled = true;
+
+        currentBodyModel = bodyTakeover.bodyModel;
+        bodyTakeover.isPossessed = true;
+        currentBody = mainBody;
+        currentBody.transform.position += Vector3.up * 3;
+
+        isPossessing = false;
+    }
+
 }

@@ -88,7 +88,6 @@ public class BodyTakeover : MonoBehaviour
             Instantiate(altAttackGO, bodyModel.transform);
             acceptAttackInputs = false;
         }
-        //will eventually be a secondary enemy attack only available when possessed.
         else
             enemyScript.Attack();
     }

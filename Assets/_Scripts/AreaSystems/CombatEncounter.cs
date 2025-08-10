@@ -8,12 +8,10 @@ public class CombatEncounter : AreaEncounter
     /// the container of the enemies needed to complete the combat encounter. needs to be manually set.
     /// </summary>
     public GameObject enemiesParent;
-    public Renderer rend;
 
     // Start is called before the first frame update
     void Start()
     {
-        rend = gameObject.GetComponent<Renderer>();
         if (enemiesParent == null)
             Debug.LogError("enemiesParent not set for " + gameObject.name);
 
@@ -33,7 +31,7 @@ public class CombatEncounter : AreaEncounter
 
     public override void AreaComplete()
     {
-        rend.material.SetColor("_CurrentColor", Color.green);
+        base.AreaComplete();
     }
 
     private void OnTriggerEnter(Collider other)

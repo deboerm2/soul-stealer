@@ -164,8 +164,8 @@ MonoBehaviour:
   bodyAnimator: {fileID: 0}
   acceptAttackInputs: 1
   restrictMovement: 0
-  maxSpeed: 10
-  acceleration: 20
+  maxSpeed: 7
+  acceleration: 14
   jumpStrength: 5
   attackGO: {fileID: 3272826502085244030, guid: b933a7b54a603c64f91116122c510422,
     type: 3}
@@ -377,7 +377,7 @@ MonoBehaviour:
   - m_Script
   m_LockStageInInspector: 
   m_StreamingVersion: 20170927
-  m_Priority: 10
+  m_Priority: 12
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 5616273187320028702}

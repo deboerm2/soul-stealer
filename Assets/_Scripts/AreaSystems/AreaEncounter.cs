@@ -25,7 +25,10 @@ public class AreaEncounter : MonoBehaviour
 
     public virtual void AreaComplete()
     {
-
+        foreach(Collider wall in areaEntrances)
+        {
+            wall.gameObject.SetActive(false);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -33,6 +36,14 @@ public class AreaEncounter : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             LockDoors();
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player") && areaComplete)
+        {
+            
         }
     }
 

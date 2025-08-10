@@ -204,7 +204,7 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2141224215523754229}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 3ee7ffefde9f6af4fab927ce320e5bfc, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -267,10 +267,10 @@ MonoBehaviour:
   bodyAnimator: {fileID: 0}
   acceptAttackInputs: 1
   restrictMovement: 0
-  maxSpeed: 10
-  acceleration: 20
+  maxSpeed: 15
+  acceleration: 10
   jumpStrength: 5
-  attackGO: {fileID: 0}
+  attackGO: {fileID: 907931763215497254, guid: 2fcb69eb684269a4bb321795eb2d509e, type: 3}
   altAttackGO: {fileID: 0}
 --- !u!114 &5918882535837952456
 MonoBehaviour:

@@ -156,10 +156,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainBody: 0
   isPossesable: 1
-  soulNeeded: 20
+  soulNeeded: 30
   isPossessed: 0
   followTarget: {fileID: 652858922725056784}
-  cineCam: {fileID: 0}
+  cineCam: {fileID: 2125681075087202010}
   bodyModel: {fileID: 2315741065263887992}
   bodyAnimator: {fileID: 0}
   acceptAttackInputs: 1
@@ -185,7 +185,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 50
   currentHealth: 0
-  energyOnDeath: 50
+  energyOnDeath: 20
 --- !u!114 &7518316669855417948
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -240,7 +240,7 @@ Transform:
   m_GameObject: {fileID: 6564953503099112754}
   serializedVersion: 2
   m_LocalRotation: {x: 0.30747804, y: -0, z: -0, w: 0.9515552}
-  m_LocalPosition: {x: 0.2, y: 4.266669, z: -4.447495}
+  m_LocalPosition: {x: 0.2, y: 4.266669, z: -4.4474955}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -268,7 +268,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 652858922725056784}
   m_Lens:
-    FieldOfView: 40
+    FieldOfView: 60
     OrthographicSize: 10
     NearClipPlane: 0.1
     FarClipPlane: 5000

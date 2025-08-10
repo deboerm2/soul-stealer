@@ -12,17 +12,14 @@ public class FlyerEnemy : Enemy
     public float attackRange = 10;
 
     [Header("Prefabs")]
-    //what the player attacks. the "creaking heart"
-    public GameObject beacon;
     public GameObject slowingProjectile;
 
-    [Header("Orbit")]
-    [SerializeField]
-    private Transform orbitPoint;
-    [SerializeField]
-    private float orbitRadius;
-    [SerializeField]
-    private float orbitSpeed;
+    [HideInInspector]
+    public Transform orbitPoint;
+    [HideInInspector]
+    public float orbitRadius;
+    [HideInInspector]
+    public float orbitSpeed;
 
     [Header("Dive Bomb")]
     [SerializeField]

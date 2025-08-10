@@ -120,7 +120,7 @@ public class EffectHandler : MonoBehaviour
     {
         if (activeEffects.slow && _bodyTakeover != null)
         {
-            _bodyTakeover.SlowDown(0.7f);
+            _bodyTakeover.SlowDown(0.8f);
         }
         if(activeEffects.damage && _health != null)
         {
