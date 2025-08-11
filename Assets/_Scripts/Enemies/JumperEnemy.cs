@@ -33,7 +33,7 @@ public class JumperEnemy : Enemy
 
     public override void Movement()
     {
-        if(!isJumping)
+        if(!isJumping && player != null)
         {
             base.Movement();
         }
@@ -41,8 +41,9 @@ public class JumperEnemy : Enemy
 
     public override void Combat()
     {
-        if (!bodyTakeover.isPossessed)
+        if (!bodyTakeover.isPossessed && player != null)
         {
+
             if (Vector3.Distance(player.transform.position, gameObject.transform.position) < jumpDist && bodyTakeover.acceptAttackInputs)
             {
                 Attack();
@@ -101,7 +102,7 @@ public class JumperEnemy : Enemy
         p3 = point3;
         p2 = (p1 + p3) / 2f;
         //height of apex, minimum of 2 units
-        p2.y = Mathf.Max(Vector3.Distance(p1, p3) * jumpHeight, Mathf.Max(p1.y, p3.y) + 2f);
+        p2.y = Mathf.Max(Vector3.Distance(p1, p3) * jumpHeight/2, Mathf.Max(p1.y, p3.y) + 2f);
     }
 
     //found at https://discussions.unity.com/t/moving-an-object-along-a-bezier-curve/1965/4

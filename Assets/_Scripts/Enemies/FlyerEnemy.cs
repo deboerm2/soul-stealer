@@ -49,7 +49,7 @@ public class FlyerEnemy : Enemy
     // Update is called once per frame
     void Update()
     {
-        if (!bodyTakeover.isPossessed)
+        if (!bodyTakeover.isPossessed && player != null)
         {
             bodyTakeover.bodyModel.transform.rotation = gameObject.transform.rotation;
             Combat();
@@ -78,6 +78,7 @@ public class FlyerEnemy : Enemy
 
     public override void Combat()
     {
+
         if (Vector3.Distance(player.transform.position, gameObject.transform.position) < attackRange)
         {
             doOrbit = false;

@@ -8,18 +8,12 @@ public class GiantEnemy : Enemy
     {
         if (Vector3.Distance(player.transform.position, gameObject.transform.position) < 5f && bodyTakeover.acceptAttackInputs)
         {
-            Attack();
+            if (Random.Range(1, 8) > 1)
+                Attack();
+            else
+                AltAttack();
         }
     }
 
-    public override void Attack()
-    {
-        if(Random.Range(1,8) > 1)
-            base.Attack();
-        else
-        {
-            Instantiate(bodyTakeover.altAttackGO, bodyTakeover.bodyModel.transform);
-            bodyTakeover.acceptAttackInputs = false;
-        }
-    }
+    
 }

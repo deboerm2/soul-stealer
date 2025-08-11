@@ -89,7 +89,7 @@ public class BodyTakeover : MonoBehaviour
             acceptAttackInputs = false;
         }
         else
-            enemyScript.Attack();
+            enemyScript.AltAttack();
     }
 
     //called to allow other scripts to change animator params without needing a reference to the animator in the other script

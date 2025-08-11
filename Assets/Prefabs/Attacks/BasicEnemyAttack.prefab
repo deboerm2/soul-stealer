@@ -122,5 +122,7 @@ MonoBehaviour:
   duration: 0.2
   startup: 0.3
   endlag: 0.5
+  secondaryAttack: {fileID: 0}
+  spawnDelay: 0
   col: {fileID: 0}
   currentTag: 

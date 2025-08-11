@@ -41,15 +41,17 @@ public class FlyerAnchor : Health
             needFlyer = true;
         }
         if (needFlyer)
+        {
             StartCoroutine(SpawnDelay(spawnDelay));
+        }
     }
 
     IEnumerator SpawnDelay(float delay)
     {
         spawning = true;
+        needFlyer = false;
         yield return new WaitForSeconds(delay);
         SpawnNewFlyer();
-        needFlyer = false;
     }
 
     public override void Die()

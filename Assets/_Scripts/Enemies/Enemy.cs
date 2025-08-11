@@ -34,7 +34,7 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         //Debug.DrawRay(gameObject.transform.position, gameObject.transform.forward);
-        if (bodyTakeover.isPossessed)
+        if (bodyTakeover.isPossessed || player == null)
             return;
         else
         {
@@ -50,9 +50,10 @@ public class Enemy : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (bodyTakeover.isPossessed)
+        if (bodyTakeover.isPossessed || player == null)
         {
             gameObject.transform.forward = Vector3.forward;
+            maxSpeed = bodyTakeover.maxSpeed;
             return;
         }
         Movement();
@@ -62,17 +63,16 @@ public class Enemy : MonoBehaviour
     {
 
         //too far, catch up and close distance
-        if (Vector3.Distance(player.transform.position, gameObject.transform.position) > 15 && giveChase)
-        {
-            maxSpeed = bodyTakeover.maxSpeed * 2;
-        }
-        else
-        {
+        //if (Vector3.Distance(player.transform.position, gameObject.transform.position) > 15 && giveChase)
+        //{
+        //    maxSpeed = bodyTakeover.maxSpeed * 2;
+        //}
+        //else
+        //{
             maxSpeed = bodyTakeover.maxSpeed;
             //occasionally slow down to "rest", mostly to keep from similar enemies becoming stacked on one another.
             if (giveChase)
             {
-                
                 aggroTime += Time.fixedDeltaTime;
                 giveChase = StillAngry(aggroTime);
             }
@@ -87,7 +87,7 @@ public class Enemy : MonoBehaviour
                     restPeriod = 0;
                     aggroTime = 0;
                 }
-            }
+          //  }
         }
 
 
@@ -142,6 +142,12 @@ public class Enemy : MonoBehaviour
     public virtual void Attack()
     {
         Instantiate(bodyTakeover.attackGO, bodyTakeover.bodyModel.transform);
+        bodyTakeover.acceptAttackInputs = false;
+    }
+
+    public virtual void AltAttack()
+    {
+        Instantiate(bodyTakeover.altAttackGO, bodyTakeover.bodyModel.transform);
         bodyTakeover.acceptAttackInputs = false;
     }
 

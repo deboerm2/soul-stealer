@@ -56,6 +56,9 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(mainBody == null)
+        { return; }
+
         #region Movement Input & rotations
         
         inputXZ = plControls.FindAction("move");
@@ -157,6 +160,8 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (mainBody == null) return;
+
         #region Movement
         //if player velocity is greater than max speed. slow down
         if (Mathf.Sqrt((playerRB.velocity.x * playerRB.velocity.x) + (playerRB.velocity.z * playerRB.velocity.z)) >= maxSpeed)
@@ -215,6 +220,9 @@ public class PlayerController : MonoBehaviour
 
         mainBodyModel.SetActive(true);
         mainBody.GetComponent<Collider>().enabled = true;
+        mainBody.GetComponent<Rigidbody>().useGravity = true;
+        bodyTakeover.acceptAttackInputs = true;
+        bodyTakeover.restrictMovement = false;
         isPossessing = false;
 
     }
@@ -244,8 +252,6 @@ public class PlayerController : MonoBehaviour
         jumpStrength = bodyTakeover.jumpStrength;
         //target cineCam will have higher priority over player mainBody cineCam
         bodyTakeover.cineCam.enabled = true;
-        //cineCam.Follow = bodyTakeover.followTarget;
-        //cineCam.GetCinemachineComponent<Cinemachine3rdPersonFollow>().CameraDistance = bodyCamera.armDist;
         currentBodyModel = bodyTakeover.bodyModel;
         bodyTakeover.isPossessed = true;
         currentBody = target;
@@ -253,6 +259,7 @@ public class PlayerController : MonoBehaviour
 
         mainBodyModel.SetActive(false);
         mainBody.GetComponent<Collider>().enabled = false;
+        mainBody.GetComponent<Rigidbody>().useGravity = false;
         isPossessing = true;
     }
     

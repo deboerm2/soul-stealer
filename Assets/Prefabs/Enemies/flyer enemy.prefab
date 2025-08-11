@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 142908358049562924}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.718869, y: -1.0873642, z: 1.6766567}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -86,6 +86,7 @@ GameObject:
   - component: {fileID: 5086277360377015514}
   - component: {fileID: 2858862053294708991}
   - component: {fileID: 732905112248263730}
+  - component: {fileID: 3050982470537548059}
   m_Layer: 0
   m_Name: flyer enemy
   m_TagString: Untagged
@@ -225,6 +226,21 @@ MonoBehaviour:
     slow: 0
     damage: 0
     cursed: 0
+--- !u!114 &3050982470537548059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 992307551636726931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85572d50d41e8ac4d82e7abf98018f88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 999
+  currentHealth: 0
+  energyOnDeath: 0
 --- !u!1 &1313117165335430225
 GameObject:
   m_ObjectHideFlags: 0
@@ -285,7 +301,7 @@ MonoBehaviour:
   Damping: {x: 0.1, y: 0.5, z: 0.3}
   ShoulderOffset: {x: 0, y: 0, z: 0}
   VerticalArmLength: 0.4
-  CameraSide: 1
+  CameraSide: 0.5
   CameraDistance: 0
   CameraCollisionFilter:
     serializedVersion: 2
@@ -320,7 +336,7 @@ Transform:
   m_GameObject: {fileID: 4082131198766780170}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.718869, y: -1.4873643, z: 1.6766567}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

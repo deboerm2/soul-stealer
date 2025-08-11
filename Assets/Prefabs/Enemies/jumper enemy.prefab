@@ -259,7 +259,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainBody: 0
   isPossesable: 1
-  soulNeeded: 10
+  soulNeeded: 14
   isPossessed: 0
   followTarget: {fileID: 4174167884818479440}
   cineCam: {fileID: 2086019927844934636}
@@ -284,7 +284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85572d50d41e8ac4d82e7abf98018f88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
+  maxHealth: 25
   currentHealth: 0
   energyOnDeath: 7
 --- !u!114 &8915931233270275977
@@ -302,7 +302,7 @@ MonoBehaviour:
   jumpDist: 10
   jumpSpeed: 15
   jumpHeight: 0.4
-  jumpCooldown: 1.5
+  jumpCooldown: 2
 --- !u!114 &-6970439155755892985
 MonoBehaviour:
   m_ObjectHideFlags: 0
