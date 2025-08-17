@@ -58,7 +58,7 @@ public class FlyerAnchor : Health
     {
         if (flyer != null)
         {//need to ensure player un-possesses a body here
-            PlayerController.Instance.RemoveBodyInRange(flyer);
+            FindObjectOfType<BodyPossession>().RemoveBodyInRange(flyer);
             if (flyer.GetComponent<BodyTakeover>().isPossessed)
             {
                 PlayerController.Instance.BodySwap();

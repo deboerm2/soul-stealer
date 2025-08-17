@@ -56,7 +56,16 @@
                     "id": "44040939-cb25-440a-a6a4-cd66f4a6f47f",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Tap",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "targetedPossession",
+                    "type": "Button",
+                    "id": "b0e0875c-3699-4547-9450-e9453916f810",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Hold",
                     "initialStateCheck": false
                 }
             ],
@@ -234,6 +243,28 @@
                     "processors": "ScaleVector2(x=0.1,y=0.1)",
                     "groups": "",
                     "action": "look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9a953ab6-8118-47cc-9a62-6c931d52ea6d",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "targetedPossession",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a2a9bf9e-667a-407b-bfe9-81a094173a63",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "targetedPossession",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

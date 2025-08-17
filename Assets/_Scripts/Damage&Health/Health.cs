@@ -32,7 +32,7 @@ public class Health : MonoBehaviour
     public virtual void Die()
     {
         //need to ensure player un-possesses a body here
-        PlayerController.Instance.RemoveBodyInRange(gameObject);
+        FindObjectOfType<BodyPossession>().RemoveBodyInRange(gameObject);
         if(gameObject.GetComponent<BodyTakeover>().isPossessed)
         {
             PlayerController.Instance.BodySwap();

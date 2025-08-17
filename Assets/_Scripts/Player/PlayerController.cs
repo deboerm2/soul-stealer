@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    #region variables
     public static PlayerController Instance { get; private set; }
 
     private InputAction inputXZ;
@@ -24,12 +25,8 @@ public class PlayerController : MonoBehaviour
     private float jumpStrength;
     [SerializeField]
     private GameObject currentBodyModel;
-    /// <summary>
-    /// used by BodyDetection to know what takeovers are in range
-    /// </summary>
-    private HashSet<GameObject> bodiesInRange = new HashSet<GameObject>();
-    private GameObject closestTakeOver;
-    private bool isPossessing = false;
+    
+    public bool isPossessing { get; private set; } = false;
     private SoulEnergy soulEnergy;
 
     public InputActionAsset plControls;
@@ -37,9 +34,9 @@ public class PlayerController : MonoBehaviour
     public GameObject mainBody;
     public GameObject mainBodyModel;
     public GameObject currentBody { get; private set; }
-    
 
-    
+    #endregion
+
 
     // Start is called before the first frame update
     void Start()
@@ -93,54 +90,6 @@ public class PlayerController : MonoBehaviour
         else
         {
             canJump = false;
-        }
-        #endregion
-        #region Takeover detection
-        if (bodiesInRange.Count > 0)
-        {
-            foreach (GameObject body in bodiesInRange)
-            {
-                if (!body.GetComponent<BodyTakeover>().isPossesable)
-                {
-                    continue;
-                }
-                else if (closestTakeOver == null)
-                    closestTakeOver = body;
-                else
-                {
-                    if ((closestTakeOver.transform.position - currentBody.transform.position).magnitude >
-                        (body.transform.position - currentBody.transform.position).magnitude)
-                    {
-                        closestTakeOver = body;
-                    }
-                }
-            }
-            if (closestTakeOver != null)
-                Debug.DrawLine(currentBody.transform.position, closestTakeOver.transform.position, Color.red);
-        }
-        else
-            closestTakeOver = null;
-
-        #endregion
-        #region Possesion
-        if (plControls.FindAction("possession").triggered)
-        {
-            if (isPossessing)
-            {
-                BodySwap();
-                if (!closestTakeOver.GetComponent<BodyTakeover>().isPossesable)
-                {
-                    closestTakeOver = null;
-                }
-            }
-            else if (closestTakeOver != null)
-            {
-                BodySwap(closestTakeOver);
-            }
-        }
-        if(isPossessing)
-        {
-            mainBody.transform.position = currentBody.transform.position;
         }
         #endregion
         #region Combat
@@ -227,7 +176,7 @@ public class PlayerController : MonoBehaviour
 
     }
     //swaps all necessary variables to the target enemy body
-    void BodySwap(GameObject target)
+    public void BodySwap(GameObject target)
     {
         bodyCamera.enabled = false;
 
@@ -261,17 +210,6 @@ public class PlayerController : MonoBehaviour
         mainBody.GetComponent<Collider>().enabled = false;
         mainBody.GetComponent<Rigidbody>().useGravity = false;
         isPossessing = true;
-    }
-    
-    //adds a gameobject to the hashSet used by player to know which bodies are even in range to be considered possessable candidates
-    public void AddBodyInRange(GameObject body)
-    {
-        bodiesInRange.Add(body);
-    }
-    //removes a gameobject from the hashSet used by player to know which bodies are even in range to be considered possessable candidates
-    public void RemoveBodyInRange(GameObject body)
-    {
-        bodiesInRange.Remove(body);
     }
 
     void Startup()
