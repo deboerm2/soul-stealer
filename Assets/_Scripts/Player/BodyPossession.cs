@@ -5,36 +5,44 @@ using UnityEngine;
 public class BodyPossession : MonoBehaviour
 {
     private HashSet<GameObject> bodiesInRange = new HashSet<GameObject>();
-    private GameObject takeoverTarget;
+    public GameObject takeoverTarget { get; private set; }
+
+    private bool isTargeting;
 
     private void Update()
     {
         #region Takeover detection
         if (bodiesInRange.Count > 0)
         {
-            //Select the closest possesable target
-            foreach (GameObject body in bodiesInRange)
+            //Manually select a target within range
+            if (isTargeting)
             {
-                if (!body.GetComponent<BodyTakeover>().isPossesable)
+                Targeting();
+            }
+            else
+            {
+                //Select the closest possesable target
+                foreach (GameObject body in bodiesInRange)
                 {
-                    continue;
-                }
-                else if (takeoverTarget == null)
-                    takeoverTarget = body;
-                else
-                {
-                    if ((takeoverTarget.transform.position - PlayerController.Instance.currentBody.transform.position).magnitude >
-                        (body.transform.position - PlayerController.Instance.currentBody.transform.position).magnitude)
+                    if (!body.GetComponent<BodyTakeover>().isPossesable)
                     {
+                        continue;
+                    }
+                    else if (takeoverTarget == null)
                         takeoverTarget = body;
+                    else
+                    {
+                        if ((takeoverTarget.transform.position - PlayerController.Instance.currentBody.transform.position).magnitude >
+                            (body.transform.position - PlayerController.Instance.currentBody.transform.position).magnitude)
+                        {
+                            takeoverTarget = body;
+                        }
                     }
                 }
             }
-            //Manually select a target within range
         }
         else
             takeoverTarget = null;
-
         #endregion
         #region Possesion
         if (PlayerController.Instance.plControls.FindAction("possession").triggered)
@@ -56,6 +64,13 @@ public class BodyPossession : MonoBehaviour
         else if (PlayerController.Instance.plControls.FindAction("targetedPossession").triggered)
         {
             print("TARGET NOWWWW");
+            isTargeting = true;
+            Time.timeScale = .3f;
+            Time.fixedDeltaTime = 0.02f * Time.timeScale;
+        }
+        else if(!PlayerController.Instance.plControls.FindAction("targetedPossession").inProgress && isTargeting)
+        {
+            EndTargeting();
         }
 
         //keep invis body on top of possessed body, help with enemy targeting
@@ -64,6 +79,43 @@ public class BodyPossession : MonoBehaviour
             PlayerController.Instance.mainBody.transform.position = PlayerController.Instance.currentBody.transform.position;
         }
         #endregion
+    }
+
+    void Targeting()
+    {
+        Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit))
+        {
+            takeoverTarget = null;
+            foreach (GameObject body in bodiesInRange)
+            {
+                if (Vector3.Distance(hit.point, body.transform.position) > 1.5f)
+                {
+                    continue;
+                }
+                if (takeoverTarget == null || Vector3.Distance(hit.point, takeoverTarget.transform.position) > Vector3.Distance(hit.point, body.transform.position))
+                {
+                    takeoverTarget = body;
+                    continue;
+                }
+            }
+        }
+        else
+        {
+            takeoverTarget = null;
+            print("NADA");
+        }
+        
+    }
+    void EndTargeting()
+    {
+        Time.timeScale = 1f;
+        Time.fixedDeltaTime = 0.02f;
+        isTargeting = false;
+        print("RELEASED!");
+        if(takeoverTarget != null)
+            PlayerController.Instance.BodySwap(takeoverTarget);
     }
 
     private void OnTriggerEnter(Collider other)

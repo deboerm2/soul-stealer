@@ -21,6 +21,11 @@ public class PossessingShaderControls : MonoBehaviour
             {
                 skinMesh.materials[1].SetInt("_isPossessable", GetComponentInParent<BodyTakeover>().isPossesable ? 1 : 0);
             }
+            if(skinMesh.materials[1].HasProperty("_isTarget"))
+            {
+                skinMesh.materials[1].SetInt("_isTarget", transform.parent.parent.gameObject == FindObjectOfType<BodyPossession>().takeoverTarget ? 1 : 0);
+            }
         }
+
     }
 }
