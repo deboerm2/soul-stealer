@@ -8,6 +8,8 @@ public class Health : MonoBehaviour
     public float currentHealth;
     public float energyOnDeath;
 
+    public bool invulnerable;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +26,8 @@ public class Health : MonoBehaviour
     
     public void TakeDamage(float amount)
     {
-        currentHealth -= amount;
+        if(!invulnerable)
+            currentHealth -= amount;
     }
     /// <summary>
     /// called to first before Death() to initiate death animations and handle any cleanup and setup before destroying the gameobject.

@@ -30,7 +30,7 @@ public class Attack : MonoBehaviour
     private bool secondaryAttackComplete = false;
 
     // Start is called before the first frame update
-    void Start()
+    public virtual void Start()
     {
         col = gameObject.GetComponent<Collider>();
         col.enabled = false;
@@ -72,7 +72,7 @@ public class Attack : MonoBehaviour
         StartCoroutine(AttackDuration());
     }
 
-    IEnumerator AttackDuration()
+    public virtual IEnumerator AttackDuration()
     {
         col.enabled = true;
         GetComponent<Renderer>().enabled = true;

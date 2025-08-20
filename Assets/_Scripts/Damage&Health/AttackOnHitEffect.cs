@@ -20,7 +20,13 @@ public class AttackOnHitEffect : MonoBehaviour
     {
         if(other.GetComponent<Health>() != null && !other.CompareTag(attack.currentTag))
         {
-            other.GetComponent<EffectHandler>().ActivateOnHitEffects(onHitEffects, duration);
+            ApplyOnHitEffects(other.GetComponent<EffectHandler>());
         }
+    }
+
+    public void ApplyOnHitEffects(EffectHandler target)
+    {
+        if(!target.GetComponent<Health>().invulnerable)
+            target.ActivateOnHitEffects(onHitEffects, duration);
     }
 }

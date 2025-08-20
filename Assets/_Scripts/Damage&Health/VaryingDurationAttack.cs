@@ -5,7 +5,7 @@ using UnityEngine;
 public class VaryingDurationAttack : Attack
 {
     // Start is called before the first frame update
-    void Start()
+    public override void Start()
     {
         col = gameObject.GetComponent<Collider>();
         col.enabled = false;
