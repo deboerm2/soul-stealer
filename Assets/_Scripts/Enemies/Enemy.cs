@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
@@ -17,7 +18,9 @@ public class Enemy : MonoBehaviour
     protected float restPeriod;
     protected bool giveChase = true;
 
+    protected NavMeshAgent navAgent;
     protected Vector3 moveDir;
+    protected RaycastHit groundHit;
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +31,7 @@ public class Enemy : MonoBehaviour
         bodyTakeover = gameObject.GetComponent<BodyTakeover>();
         animator = GetComponentInChildren<Animator>();
         maxSpeed = bodyTakeover.maxSpeed;
+        navAgent = GetComponent<NavMeshAgent>();
     }
 
     // Update is called once per frame
@@ -35,9 +39,13 @@ public class Enemy : MonoBehaviour
     {
         //Debug.DrawRay(gameObject.transform.position, gameObject.transform.forward);
         if (bodyTakeover.isPossessed || player == null)
+        {
+            navAgent.enabled = false;
             return;
+        }
         else
         {
+            
             if (moveDir != Vector3.zero)
                 bodyTakeover.SetAnimatorParam("MovementInput", true);
             else
@@ -80,7 +88,7 @@ public class Enemy : MonoBehaviour
             {
                 
                 restPeriod += Time.fixedDeltaTime;
-                maxSpeed = bodyTakeover.maxSpeed * 0;
+                //maxSpeed = bodyTakeover.maxSpeed * 0;
                 if (restPeriod >= 2f)
                 {
                     giveChase = true;
@@ -90,18 +98,34 @@ public class Enemy : MonoBehaviour
           //  }
         }
 
+        if(Vector3.Distance(transform.position, navAgent.nextPosition) > 0.2f)
+        {
+            navAgent.updatePosition = true;
+        }
 
         Move();
     }
     private void Move()
     {
-        moveDir = player.transform.position - gameObject.transform.position;
+        navAgent.SetDestination(player.transform.position);
+        navAgent.updatePosition = false;
+        navAgent.updateRotation = false;
+        moveDir = navAgent.desiredVelocity;
         moveDir.y = 0;
+        moveDir.Normalize();
+        
         if (bodyTakeover.restrictMovement)
         {
             moveDir = Vector3.zero;
         }
 
+        if (navAgent.isOnOffMeshLink)
+        {
+            navAgent.updatePosition = true;
+        }
+
+        Physics.Raycast(transform.position, Vector3.down, out groundHit, 5f);
+        
         //going too fast, slow down
         if (Mathf.Sqrt((rb.velocity.x * rb.velocity.x) + (rb.velocity.z * rb.velocity.z)) >= maxSpeed)
         {
@@ -111,14 +135,17 @@ public class Enemy : MonoBehaviour
         //change direction if it doesn't match input
         if (new Vector3(rb.velocity.x, 0, rb.velocity.z).normalized != moveDir.normalized)
         {
-            rb.AddForce((moveDir.normalized - new Vector3(rb.velocity.x, 0, rb.velocity.z).normalized), ForceMode.VelocityChange);
+            rb.AddForce(Vector3.ProjectOnPlane(moveDir.normalized - new Vector3(rb.velocity.x, 0, rb.velocity.z).normalized, groundHit.normal), ForceMode.VelocityChange);
         }
 
         //if there is input, move
         if (moveDir != Vector3.zero)
         {
-            rb.AddForce(moveDir.normalized * bodyTakeover.acceleration, ForceMode.Acceleration);
+            rb.AddForce(Vector3.ProjectOnPlane(moveDir.normalized * bodyTakeover.acceleration, groundHit.normal), ForceMode.Acceleration);
         }
+
+
+        navAgent.velocity = rb.velocity;
         if (bodyTakeover.restrictMovement)
         {
             return;
@@ -126,7 +153,7 @@ public class Enemy : MonoBehaviour
 
         Vector3 faceForward = player.transform.position - gameObject.transform.position;
         faceForward.y = 0;
-        animator.gameObject.transform.forward = faceForward;
+        animator.gameObject.transform.forward = moveDir;
     }
     /// <summary>
     /// logic for when the enemy will attack
