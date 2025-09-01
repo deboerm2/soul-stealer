@@ -27,7 +27,7 @@ public class PossessingShaderControls : MonoBehaviour
             {
                 rend.materials[1].SetInt("_isPossessable", GetComponentInParent<BodyTakeover>().isPossesable ? 1 : 0);
             }
-            if(rend.materials[1].HasProperty("_isTarget"))
+            if(rend.materials[1].HasProperty("_isTarget") && FindObjectOfType<BodyPossession>())
             {
                 rend.materials[1].SetInt("_isTarget", parentOBJ == FindObjectOfType<BodyPossession>().takeoverTarget ? 1 : 0);
             }
