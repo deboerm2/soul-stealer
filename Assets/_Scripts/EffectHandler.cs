@@ -124,7 +124,9 @@ public class EffectHandler : MonoBehaviour
         }
         if(activeEffects.damage && _health != null)
         {
-            //_health.TakeDamage(0);
+            //5 damage per second continuous
+            print(_health.currentHealth);
+            _health.TakeDamage(5 * Time.deltaTime);
         }
         if(activeEffects.cursed)
         {
@@ -137,5 +139,25 @@ public class EffectHandler : MonoBehaviour
         _bodyTakeover.ReturnNormalSpeed();
         activeEffects.damage = false;
         activeEffects.cursed = false;
+    }
+
+    public void RemoveEffect(string effectName)
+    {
+        switch (effectName)
+        {
+            case "slow":
+                activeEffects.slow = false;
+                slowOnHit = false;
+                _bodyTakeover.ReturnNormalSpeed();
+                break;
+            case "damage":
+                activeEffects.damage = false;
+                damageOnHit = false;
+                break;
+            case "cursed":
+                activeEffects.cursed = false;
+                curseOnHit = false;
+                break;
+        }
     }
 }
