@@ -285,7 +285,7 @@ MonoBehaviour:
   acceptAttackInputs: 1
   restrictMovement: 0
   maxSpeed: 15
-  acceleration: 10
+  acceleration: 15
   jumpStrength: 5
   attackGO: {fileID: 907931763215497254, guid: 2fcb69eb684269a4bb321795eb2d509e, type: 3}
   altAttackGO: {fileID: 0}

@@ -27,7 +27,7 @@ public class Projectile : Attack
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
         gameObject.transform.position += transform.forward.normalized * speed * Time.deltaTime;
     }

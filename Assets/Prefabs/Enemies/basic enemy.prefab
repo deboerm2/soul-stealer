@@ -118,7 +118,8 @@ MonoBehaviour:
   jumpStrength: 10
   attackGO: {fileID: 3272826502085244030, guid: b933a7b54a603c64f91116122c510422,
     type: 3}
-  altAttackGO: {fileID: 0}
+  altAttackGO: {fileID: 3272826502085244030, guid: 783f1e828591b0649ad8a69f57ddd86a,
+    type: 3}
 --- !u!114 &3243326733845098509
 MonoBehaviour:
   m_ObjectHideFlags: 0

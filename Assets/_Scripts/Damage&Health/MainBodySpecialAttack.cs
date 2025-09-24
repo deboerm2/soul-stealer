@@ -4,15 +4,46 @@ using UnityEngine;
 
 public class MainBodySpecialAttack : Attack
 {
+    private List<float> damageTicks = new List<float>();
+    private List<Health> healthTargets = new List<Health>();
+
+
+    protected override void Update()
+    {
+        base.Update();
+        HandleDamage();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.GetComponent<Health>() != null && !other.CompareTag(currentTag))
         {
-            other.GetComponent<Health>().TakeDamage(damage);
-            if (other.GetComponent<EffectHandler>() != null && other.GetComponent<EffectHandler>().activeEffects.cursed)
+            healthTargets.Add(other.GetComponent<Health>());
+            damageTicks.Add(0.2f);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.GetComponent<Health>() != null && !other.CompareTag(currentTag))
+        {
+            int index = healthTargets.IndexOf(other.GetComponent<Health>());
+            healthTargets.RemoveAt(index);
+            damageTicks.RemoveAt(index);
+        }
+    }
+
+    void HandleDamage()
+    {
+        for (int i = 0; i < healthTargets.Count; i++)
+        {
+            if (damageTicks[i] > 0)
+                damageTicks[i] -= Time.deltaTime;
+            else if (damageTicks[i] <= 0)
             {
-                other.GetComponent<EffectHandler>().RemoveEffect("cursed");
-                FindObjectOfType<SoulEnergy>().AddEnergy(10);
+                healthTargets[i].TakeDamage(damage);
+                damageTicks[i] = 0.5f;
+                FindObjectOfType<SoulEnergy>().AddEnergy(2f);
             }
         }
     }

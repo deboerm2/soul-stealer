@@ -45,7 +45,7 @@ public class Attack : MonoBehaviour
         StartCoroutine(AttackStartup());
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         if(attackComplete && secondaryAttackComplete)
         {
@@ -61,7 +61,7 @@ public class Attack : MonoBehaviour
             other.GetComponent<Health>().TakeDamage(damage);
             if(other.GetComponent<EffectHandler>() != null && other.GetComponent<EffectHandler>().activeEffects.cursed)
             {
-                FindObjectOfType<SoulEnergy>().AddEnergy(1);
+                FindObjectOfType<SoulEnergy>().AddEnergy(2);
             }
         }
     }
