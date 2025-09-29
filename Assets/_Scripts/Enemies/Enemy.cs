@@ -100,7 +100,7 @@ public class Enemy : MonoBehaviour
 
         if(Vector3.Distance(transform.position, navAgent.nextPosition) > 0.2f)
         {
-            navAgent.updatePosition = true;
+            navAgent.Warp(transform.position);
         }
 
         Move();

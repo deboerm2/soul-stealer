@@ -61,6 +61,7 @@ public class BodyPossession : MonoBehaviour
             }
             print("TAPPITY TAAP");
         }
+        //manual targeting
         else if (PlayerController.Instance.plControls.FindAction("targetedPossession").triggered)
         {
             print("TARGET NOWWWW");
