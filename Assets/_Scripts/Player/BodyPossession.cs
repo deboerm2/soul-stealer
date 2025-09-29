@@ -64,10 +64,11 @@ public class BodyPossession : MonoBehaviour
         //manual targeting
         else if (PlayerController.Instance.plControls.FindAction("targetedPossession").triggered)
         {
-            print("TARGET NOWWWW");
-            isTargeting = true;
-            Time.timeScale = .3f;
-            Time.fixedDeltaTime = 0.02f * Time.timeScale;
+            if (!PlayerController.Instance.isPossessing)
+            {
+                print("TARGET NOWWWW");
+                isTargeting = true;
+            }
         }
         else if(!PlayerController.Instance.plControls.FindAction("targetedPossession").inProgress && isTargeting)
         {
@@ -84,6 +85,8 @@ public class BodyPossession : MonoBehaviour
 
     void Targeting()
     {
+        Time.timeScale = .3f;
+        Time.fixedDeltaTime = 0.02f * Time.timeScale;
         Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit))

@@ -113,7 +113,7 @@ MonoBehaviour:
   bodyAnimator: {fileID: 0}
   acceptAttackInputs: 1
   restrictMovement: 0
-  maxSpeed: 7
+  maxSpeed: 5
   acceleration: 20
   jumpStrength: 10
   attackGO: {fileID: 3272826502085244030, guid: b933a7b54a603c64f91116122c510422,
