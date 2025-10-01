@@ -24,6 +24,20 @@ public class VaryingDurationAttack : Attack
         //any other effects needed for attack
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.GetComponent<Health>() != null && !other.CompareTag(currentTag))
+        {
+            other.GetComponent<Health>().TakeDamage(damage);
+            if (other.GetComponent<EffectHandler>() != null && other.GetComponent<EffectHandler>().activeEffects.cursed)
+            {
+                FindObjectOfType<SoulEnergy>().AddEnergy(2);
+            }
+
+            TurnOff();
+        }
+    }
+
     public void TurnOff()
     {
         col.enabled = false;

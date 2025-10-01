@@ -77,7 +77,6 @@ public class JumperEnemy : Enemy
         }
         else if(CheckGrounded())
         {
-            
             isJumping = false;
             StartCoroutine(JumpCooldown());
         }
@@ -113,7 +112,7 @@ public class JumperEnemy : Enemy
 
     IEnumerator JumpCooldown()
     {
-        GetComponentInChildren<VaryingDurationAttack>().TurnOff();
+        if(GetComponentInChildren<VaryingDurationAttack>()) GetComponentInChildren<VaryingDurationAttack>().TurnOff();
         yield return new WaitForSeconds(jumpCooldown);
         bodyTakeover.acceptAttackInputs = true;
     }
