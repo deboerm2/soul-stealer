@@ -26,8 +26,13 @@ public class Health : MonoBehaviour
     
     public void TakeDamage(float amount)
     {
-        if(!invulnerable)
-            currentHealth -= amount;
+        if (!invulnerable)
+        {
+            if (gameObject.GetComponent<BodyTakeover>().isPossessed)
+                currentHealth -= amount / 2;
+            else
+                currentHealth -= amount;
+        }
     }
     /// <summary>
     /// called to first before Death() to initiate death animations and handle any cleanup and setup before destroying the gameobject.
