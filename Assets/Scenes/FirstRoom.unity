@@ -2762,7 +2762,7 @@ MeshCollider:
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 1894727344}
+  m_Mesh: {fileID: 1133675039}
 --- !u!33 &419119670
 MeshFilter:
   m_ObjectHideFlags: 10
@@ -16002,6 +16002,11 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 427172334}
+    - target: {fileID: 7535344334211130981, guid: 91f5fc52fdde4524db1afc1cce40537c,
+        type: 3}
+      propertyPath: m_Name
+      value: SoulMeter
+      objectReference: {fileID: 0}
     - target: {fileID: 7691773849658277230, guid: 91f5fc52fdde4524db1afc1cce40537c,
         type: 3}
       propertyPath: m_ConstrainProportionsScale
