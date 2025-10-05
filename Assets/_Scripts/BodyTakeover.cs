@@ -67,8 +67,6 @@ public class BodyTakeover : MonoBehaviour
         this.tag = isPossessed ? "Player" : "Enemy";
 
         bodyAnimator.SetFloat("SpeedMultiplier", currentTimeScale);
-
-        if (isPossessed && !multiplied && !mainBody) SetPossessedStats(possessedMultiplier);
     }
 
     //used to allow for player to attack with possessed enemy

@@ -59,10 +59,6 @@ public class Attack : MonoBehaviour
         if (other.GetComponent<Health>() != null && !other.CompareTag(currentTag))
         {
             other.GetComponent<Health>().TakeDamage(damage);
-            if(other.GetComponent<EffectHandler>() != null && other.GetComponent<EffectHandler>().activeEffects.cursed)
-            {
-                FindObjectOfType<SoulEnergy>().AddEnergy(2);
-            }
         }
     }
     IEnumerator AttackStartup()

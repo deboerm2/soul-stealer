@@ -130,7 +130,7 @@ public class EffectHandler : MonoBehaviour
         }
         if(activeEffects.cursed)
         {
-            //soul on hit gain due to curse effect is handled in attack script.
+            _health.defenseMultiplier = 0.7f;
         }
     }
     public void RemoveEffects()
@@ -157,6 +157,7 @@ public class EffectHandler : MonoBehaviour
             case "cursed":
                 activeEffects.cursed = false;
                 curseOnHit = false;
+                _health.defenseMultiplier = 1f;
                 break;
         }
     }

@@ -7,6 +7,8 @@ public class Health : MonoBehaviour
     public float maxHealth = 1;
     public float currentHealth;
     public float energyOnDeath;
+    //bigger number equals less damage taken
+    public float defenseMultiplier = 1f;
 
     public bool invulnerable;
 
@@ -28,10 +30,7 @@ public class Health : MonoBehaviour
     {
         if (!invulnerable)
         {
-            if (gameObject.GetComponent<BodyTakeover>().isPossessed)
-                currentHealth -= amount / 2;
-            else
-                currentHealth -= amount;
+            currentHealth -= amount / defenseMultiplier;
         }
     }
     /// <summary>

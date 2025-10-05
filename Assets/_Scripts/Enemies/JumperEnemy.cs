@@ -77,7 +77,6 @@ public class JumperEnemy : Enemy
         }
         else if(CheckGrounded())
         {
-            isJumping = false;
             StartCoroutine(JumpCooldown());
         }
         else //continue along curve until grounded
@@ -110,8 +109,13 @@ public class JumperEnemy : Enemy
         return (((1 - t) * (1 - t)) * Start) + (2 * t * (1 - t) * Control) + ((t * t) * End);
     }
 
+    public void StartJumpCooldown()
+    {
+        StartCoroutine(JumpCooldown());
+    }
     IEnumerator JumpCooldown()
     {
+        isJumping = false;
         if(GetComponentInChildren<VaryingDurationAttack>()) GetComponentInChildren<VaryingDurationAttack>().TurnOff();
         yield return new WaitForSeconds(jumpCooldown);
         bodyTakeover.acceptAttackInputs = true;

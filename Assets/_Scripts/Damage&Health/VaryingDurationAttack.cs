@@ -34,7 +34,7 @@ public class VaryingDurationAttack : Attack
                 FindObjectOfType<SoulEnergy>().AddEnergy(2);
             }
 
-            TurnOff();
+            GetComponentInParent<JumperEnemy>().StartJumpCooldown();
         }
     }
 

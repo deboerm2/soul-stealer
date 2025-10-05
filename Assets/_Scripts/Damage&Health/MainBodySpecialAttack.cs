@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class MainBodySpecialAttack : Attack
 {
+    //these two list correlate to each other, healthTargets is the health script of each enemy in range and
+    //damageTicks is their respective timer until the next damage they take
     private List<float> damageTicks = new List<float>();
     private List<Health> healthTargets = new List<Health>();
+
+    public float soulPerTick = 2f;
 
 
     protected override void Update()
@@ -43,7 +47,7 @@ public class MainBodySpecialAttack : Attack
             {
                 healthTargets[i].TakeDamage(damage);
                 damageTicks[i] = 0.5f;
-                FindObjectOfType<SoulEnergy>().AddEnergy(2f);
+                FindObjectOfType<SoulEnergy>().AddEnergy(soulPerTick);
             }
         }
     }

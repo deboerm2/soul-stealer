@@ -26,7 +26,7 @@ public class AttackOnHitEffect : MonoBehaviour
 
     public void ApplyOnHitEffects(EffectHandler target)
     {
-        if(!target.GetComponent<Health>().invulnerable)
+        if(!target.GetComponent<Health>().invulnerable && target.GetComponent<Health>().currentHealth > 0)
             target.ActivateOnHitEffects(onHitEffects, duration);
     }
 }
