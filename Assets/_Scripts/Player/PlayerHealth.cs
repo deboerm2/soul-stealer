@@ -28,6 +28,11 @@ public class PlayerHealth : Health
         base.Update();
     }
 
+    public void HealPlayer(float amount)
+    {
+        currentHealth += amount;
+    }
+
     public override void Die()
     {
         Death();

@@ -22,6 +22,7 @@ public class Health : MonoBehaviour
     // Update is called once per frame
     public virtual void Update()
     {
+        currentHealth = Mathf.Clamp(currentHealth, 0f, maxHealth);
         if (currentHealth <= 0)
             Die();
     }
