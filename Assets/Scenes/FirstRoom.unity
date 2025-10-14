@@ -12974,7 +12974,7 @@ PrefabInstance:
     - target: {fileID: 8316565120661283092, guid: c79116ffb888d3b4bb6c59bab3280071,
         type: 3}
       propertyPath: invulnerable
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8353019669262488679, guid: c79116ffb888d3b4bb6c59bab3280071,
         type: 3}
@@ -15977,6 +15977,11 @@ PrefabInstance:
       propertyPath: playerHealthScript
       value: 
       objectReference: {fileID: 2063304693}
+    - target: {fileID: 4288733488231900793, guid: 91f5fc52fdde4524db1afc1cce40537c,
+        type: 3}
+      propertyPath: m_Value
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4447430552989709442, guid: 91f5fc52fdde4524db1afc1cce40537c,
         type: 3}
       propertyPath: m_Transition
@@ -16010,6 +16015,11 @@ PrefabInstance:
     - target: {fileID: 7691773849658277230, guid: 91f5fc52fdde4524db1afc1cce40537c,
         type: 3}
       propertyPath: m_ConstrainProportionsScale
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7977492902674768778, guid: 91f5fc52fdde4524db1afc1cce40537c,
+        type: 3}
+      propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7977492902674768778, guid: 91f5fc52fdde4524db1afc1cce40537c,

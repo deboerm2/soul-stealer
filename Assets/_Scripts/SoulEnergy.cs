@@ -13,8 +13,6 @@ public class SoulEnergy : MonoBehaviour
     public float currentEnergy { get; private set; }
     private float maxEnergy = 100;
 
-    public bool healMode = false;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -32,16 +30,7 @@ public class SoulEnergy : MonoBehaviour
     /// <param name="energy">energy the enemy will give upon death</param>
     public void AddEnergy(float energy)
     {
-        if(!healMode)
-        {
-            if (currentEnergy < maxEnergy)
-                currentEnergy += energy;
-            if (currentEnergy > maxEnergy)
-                currentEnergy = maxEnergy;
-        }
-        else
-        {
-            FindObjectOfType<PlayerHealth>().HealPlayer(energy-2);
-        }
+        currentEnergy += energy;
+        currentEnergy = Mathf.Clamp(currentEnergy, 0f, maxEnergy);
     }
 }

@@ -1,6 +1,5 @@
 public class PlayerHealth : Health
 {
-
     /// <summary>
     /// The health of the possesed body. Does not count the main body
     /// </summary>
@@ -10,8 +9,21 @@ public class PlayerHealth : Health
 
     private Health possessedHealthScript;
 
+    private SoulEnergy soulEnergy;
+
+    private void Start()
+    {
+        currentHealth = maxHealth;
+        soulEnergy = FindObjectOfType<SoulEnergy>();
+    }
+
     public override void Update()
     {
+        if(PlayerController.Instance.plControls.FindAction("heal").inProgress)
+        {
+            HealPlayer(1f);
+        }
+
         possessedHealthScript = PlayerController.Instance.currentBody.GetComponentInParent<Health>();
 
         if(possessedHealthScript == this || possessedHealthScript == null)
@@ -30,7 +42,11 @@ public class PlayerHealth : Health
 
     public void HealPlayer(float amount)
     {
-        currentHealth += amount;
+        if(soulEnergy.currentEnergy >= amount && currentHealth < maxHealth)
+        {
+            soulEnergy.AddEnergy(-amount);
+            currentHealth += amount;
+        }
     }
 
     public override void Die()
