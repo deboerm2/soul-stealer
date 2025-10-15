@@ -13,6 +13,9 @@ public class SoulEnergy : MonoBehaviour
     public float currentEnergy { get; private set; }
     private float maxEnergy = 100;
 
+    public bool isSiphoned = false;
+    public SoulSiphon activeSiphon;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,7 +33,15 @@ public class SoulEnergy : MonoBehaviour
     /// <param name="energy">energy the enemy will give upon death</param>
     public void AddEnergy(float energy)
     {
-        currentEnergy += energy;
-        currentEnergy = Mathf.Clamp(currentEnergy, 0f, maxEnergy);
+        if(isSiphoned && energy > 0)
+        {
+            activeSiphon.storedEnergy += energy;
+        }
+        else
+        {
+            currentEnergy += energy;
+            currentEnergy = Mathf.Clamp(currentEnergy, 0f, maxEnergy);
+        }
+        
     }
 }

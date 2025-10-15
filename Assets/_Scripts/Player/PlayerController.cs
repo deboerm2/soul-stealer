@@ -19,7 +19,8 @@ public class PlayerController : MonoBehaviour
     private Collider playerCollider;
     private Rigidbody playerRB;
     private CameraMovement bodyCamera;
-    private BodyTakeover bodyTakeover;
+    [HideInInspector]
+    public BodyTakeover bodyTakeover { get; private set; }
     private float maxSpeed;
     private float acceleration;
     private float jumpStrength;

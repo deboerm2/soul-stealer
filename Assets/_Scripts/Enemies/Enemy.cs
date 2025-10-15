@@ -146,14 +146,15 @@ public class Enemy : MonoBehaviour
 
 
         navAgent.velocity = rb.velocity;
-        if (bodyTakeover.restrictMovement)
+        if (!bodyTakeover.restrictMovement)
         {
-            return;
+            Vector3 faceForward = player.transform.position - gameObject.transform.position;
+            faceForward.y = 0;
+
+            if (moveDir != Vector3.zero) animator.gameObject.transform.forward = moveDir;
         }
 
-        Vector3 faceForward = player.transform.position - gameObject.transform.position;
-        faceForward.y = 0;
-        animator.gameObject.transform.forward = moveDir;
+        
     }
     /// <summary>
     /// logic for when the enemy will attack

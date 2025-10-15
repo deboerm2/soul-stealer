@@ -6,8 +6,8 @@ using Cinemachine;
 
 public class BodyTakeover : MonoBehaviour
 {
-    [SerializeField]
-    private bool mainBody;
+
+    public bool mainBody;
     public bool isPossesable;
     [Tooltip("the amount of soul energy needed to possess this body")]
     public float soulNeeded;
