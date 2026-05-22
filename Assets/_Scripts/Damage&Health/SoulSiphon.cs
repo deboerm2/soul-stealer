@@ -21,12 +21,12 @@ public class SoulSiphon: Health
 
     public override void Die()
     {
-        soulEnergy.AddEnergy(storedEnergy);
         if (soulEnergy.activeSiphon == this)
         {
             soulEnergy.isSiphoned = false;
             soulEnergy.activeSiphon = null;
         }
+        soulEnergy.AddEnergy(storedEnergy);
         Death();
     }
 }
